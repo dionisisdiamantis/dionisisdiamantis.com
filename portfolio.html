@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dionisis Diamantis — Computer Scientist & Engineer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f172a'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='30' font-weight='700' fill='white'%3EDD%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="nav-cluster nav-cluster--left">
+        <a class="nav-logo nav-logo-photo" href="#hero" aria-label="Dionisis Diamantis — home">
+          <img src="./assets/images/me.jpeg" alt="" width="156" height="156" decoding="async" />
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+      </ul>
+      <div class="nav-cluster nav-cluster--right" aria-hidden="true"></div>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-accent-blob"></div>
+    <div class="hero-accent-blob2"></div>
+    <div class="hero-layout">
+      <div class="hero-main">
+        <div class="hero-tag">Open to work</div>
+        <h1 class="hero-name">Dionisis<br><em>Diamantis</em></h1>
+        <p class="hero-title">Computer Scientist & Engineer</p>
+        <p class="hero-desc">I design and build full-stack SaaS solutions, from frontend interfaces to backend services and database logic, with emphasis on performance, maintainability, and clean architecture. Based in Athens, Greece.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#projects">View my work</a>
+          <a class="btn-ghost" href="#contact">Get in touch →</a>
+        </div>
+      </div>
+      <figure class="hero-photo-wrap hero-animation" aria-label="Animated coding scene">
+        <div class="hero-orbit hero-orbit-one"></div>
+        <div class="hero-orbit hero-orbit-two"></div>
+        <div class="hero-orbit hero-orbit-three"></div>
+        <div class="hero-terminal">
+          <div class="hero-terminal-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="hero-terminal-lines">
+            <span class="line w-85"></span>
+            <span class="line w-65"></span>
+            <span class="line w-75"></span>
+            <span class="line w-55"></span>
+          </div>
+          <p class="hero-terminal-command">&gt; Progress creates direction...</p>
+        </div>
+      </figure>
+    </div>
+    <div class="hero-scroll"><span class="scroll-arrow">↓</span>SCROLL</div>
+  </section>
+
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <div class="section-label">About</div>
+        <h2 class="section-title">Building things<br>that matter</h2>
+        <p>I'm a <strong>Computer Scientist & Engineer</strong> with an Integrated Master's degree in Computer Science & Engineering from the University of Ioannina.</p>
+        <p>I have worked across research and product environments, from smart energy optimization projects to production SaaS platforms, contributing to frontend features, backend services, and database workflows.</p>
+        <p>I enjoy solving complex technical problems with practical solutions, and outside of work I spend my time playing guitar and watching cinema.</p>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat"><div class="stat-num">2<span>+</span></div><div class="stat-label">Years of experience</div></div>
+        <div class="stat"><div class="stat-num" id="github-contributions">70<span>+</span></div><div class="stat-label">Contributions in the last year</div></div>
+        <div class="stat"><div class="stat-num" id="github-monthly-commits">10<span>+</span></div><div class="stat-label">Commits this month</div></div>
+        <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">Delivery consistency</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-label reveal">Skills</div>
+    <h2 class="section-title reveal">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">01 / Frontend</div>
+        <h3>User Interfaces</h3>
+        <div class="skill-tags"><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">Next.js</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">UI/UX Implementation</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">02 / Backend</div>
+        <h3>Server & APIs</h3>
+        <div class="skill-tags"><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">REST APIs</span><span class="tag">JSON</span><span class="tag">Postman</span><span class="tag">OpenCV</span><span class="tag">MediaPipe</span><span class="tag">Pycaw</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">03 / Data</div>
+        <h3>Databases</h3>
+        <div class="skill-tags"><span class="tag">MySQL</span><span class="tag">MariaDB</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">04 / DevOps</div>
+        <h3>Infrastructure</h3>
+        <div class="skill-tags"><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">Nginx</span><span class="tag">YAML</span><span class="tag">Ansible</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">05 / Tools</div>
+        <h3>Workflow</h3>
+        <div class="skill-tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Figma</span><span class="tag">Jira</span><span class="tag">Cursor</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">06 / Craft</div>
+        <h3>Practices</h3>
+        <div class="skill-tags"><span class="tag">API Integrations</span><span class="tag">Workflow Automation</span><span class="tag">Performance Optimization</span><span class="tag">System Design</span><span class="tag">Debugging</span><span class="tag">Agile</span><span class="tag">Computer Vision</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-label reveal">Projects</div>
+    <h2 class="section-title reveal">Selected work</h2>
+    <div class="projects-list">
+      <div class="project-item reveal">
+        <div class="project-num">01</div>
+        <div class="project-info"><h3>Windows Setup Automation</h3><p>An Ansible playbook for provisioning a complete Windows 10/11 development environment, including PowerShell profile setup, environment variables, PATH management, WinGet package installation, and optional development workspace/bootstrap tasks via tags.</p></div>
+        <div class="project-tech"><span class="project-tag">Ansible</span><span class="project-tag">PowerShell</span><span class="project-tag">WinGet</span><span class="project-tag">Lua</span><span class="project-tag">Jinja</span><span class="project-tag">Shell</span></div>
+      </div>
+      <div class="project-item reveal">
+        <div class="project-num">02</div>
+        <div class="project-info"><h3>Hand Gesture Volume Control</h3><p>A computer vision desktop app that controls Windows master volume by measuring thumb-index fingertip distance in real time via webcam input, with configurable calibration and smoothing for stable gesture response.</p></div>
+        <div class="project-tech"><span class="project-tag">Python</span><span class="project-tag">OpenCV</span><span class="project-tag">MediaPipe</span><span class="project-tag">Pycaw</span></div>
+      </div>
+      <div class="project-item reveal">
+        <div class="project-num">03</div>
+        <div class="project-info"><h3>LyriSearch</h3><p>A Java-based lyrics search engine developed for the Information Retrieval course, using Lucene Core for indexing and advanced search (phrase, fuzzy, wildcard), with pagination, highlighting, and recommendations based on search history.</p></div>
+        <div class="project-tech"><span class="project-tag">Java</span><span class="project-tag">Lucene Core</span><span class="project-tag">Maven</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label reveal">Experience</div>
+    <h2 class="section-title reveal">Where I've worked</h2>
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-date">July 2025 – Present</div>
+        <div class="exp-body">
+          <div class="exp-body-row">
+            <div class="exp-body-text">
+              <h3>Full-stack Software Engineer</h3>
+              <div class="company">Kyvera Solutions</div>
+              <p>Contributing to a compliance SaaS platform managing organization/entity structures and secure data rooms. Built Next.js frontend features for entity management and <br/>compliance workflows, and developed Python backend services integrating international registry APIs for KYC/KYB.</p>
+            </div>
+            <div class="exp-badge">
+              <img src="./assets/images/kyvera.png" alt="Kyvera Solutions logo" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">May 2025 – Present</div>
+        <div class="exp-body">
+          <div class="exp-body-row">
+            <div class="exp-body-text">
+              <h3>Full-stack Software Engineer</h3>
+              <div class="company">Athena Research Center</div>
+              <p>Delivered full-stack product features for <a class="project-link" href="https://bip.imsi.athenarc.gr" target="_blank" rel="noopener">BIP! Finder</a>, optimized filtering logic and database queries, and refactored legacy components for maintainability.</p>
+            </div>
+            <div class="exp-badge exp-badge--athena">
+              <img src="./assets/images/athena.png" alt="Athena Research Center logo" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-date">2021 – 2022</div>
+        <div class="exp-body">
+          <div class="exp-body-row">
+            <div class="exp-body-text">
+              <h3>Research Member</h3>
+              <div class="company">National Technical University of Athens</div>
+              <p>Worked on smart-building project for energy optimization using machine learning techniques, including software for managing EV charging station data and cost optimization.</p>
+            </div>
+            <div class="exp-badge">
+              <img src="./assets/images/ntua.webp" alt="National Technical University of Athens logo" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="section-label reveal">Contact</div>
+      <h2 class="section-title reveal">Open to Opportunities</h2>
+      <p class="contact-sub reveal">Open to discussing roles, collaborations, and impactful engineering opportunities.</p>
+      <a class="contact-email reveal" href="mailto:contact@dionisisdiamantis.com">contact@<em>dionisisdiamantis.com</em></a>
+      <div class="social-links reveal">
+        <a class="social-link" href="https://github.com/dionisisdiamantis" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-link" href="https://www.linkedin.com/in/dionisis-diamantis/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-copy">© <span id="current-year">2026</span> Dionisis Diamantis. Powered by HTML, CSS & JavaScript.</span>
+    <a class="footer-back" href="#hero">Back to top ↑</a>
+  </footer>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>
