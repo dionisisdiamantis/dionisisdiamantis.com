@@ -425,6 +425,7 @@
     /* FOOTER */
     footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; background: var(--bg2); }
     .footer-copy { font-family: var(--font-main); font-size: 12px; color: var(--muted); }
+    .footer-links { display: flex; align-items: center; gap: 1rem; }
     .footer-back { font-family: var(--font-main); font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-back:hover { color: var(--accent); }
 

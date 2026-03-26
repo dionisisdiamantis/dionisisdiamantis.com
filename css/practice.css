@@ -1,0 +1,144 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #041e42;
+  background: #ffffff;
+}
+
+.practice-page {
+  width: min(1100px, 100% - 3rem);
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+}
+
+.back-link {
+  display: inline-block;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.back-link:hover {
+  color: #1d4ed8;
+}
+
+.practice-header {
+  margin-bottom: 1rem;
+}
+
+.practice-header h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 4vw, 2.3rem);
+}
+
+.practice-header p {
+  margin: 0.35rem 0 0;
+  color: #475569;
+  font-weight: 500;
+}
+
+.practice-hud {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+  color: #334155;
+  font-weight: 500;
+}
+
+.practice-hud strong {
+  color: #0f172a;
+}
+
+.staff-card {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+
+.notation-root {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+}
+
+.answers-row {
+  position: relative;
+  height: 42px;
+  margin-top: 0.8rem;
+}
+
+.feedback-row {
+  position: relative;
+  min-height: 24px;
+  margin-top: 0.45rem;
+}
+
+.game-status {
+  margin: 0.7rem 0 0;
+  min-height: 1.2rem;
+  color: #475569;
+  font-size: 14px;
+}
+
+.answer-mark {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+.answer-mark--correct {
+  color: #16a34a;
+}
+
+.answer-mark--wrong {
+  color: #dc2626;
+}
+
+.note-answer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 62px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(15, 23, 42, 0.25);
+  border-radius: 8px;
+  padding: 0.28rem 0.35rem;
+  text-align: center;
+  font: inherit;
+  font-size: 14px;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.note-answer:focus {
+  border-color: rgba(37, 99, 235, 0.55);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+@media (max-width: 720px) {
+  .practice-page {
+    width: min(1100px, 100% - 1.5rem);
+    padding-top: 1.25rem;
+  }
+
+  .staff-card {
+    padding: 0;
+  }
+
+  .note-answer {
+    width: 56px;
+  }
+}
