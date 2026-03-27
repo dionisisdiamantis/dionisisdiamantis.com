@@ -222,6 +222,17 @@ function drawExercise(exercise) {
   state.currentExercise = exercise;
 }
 
+function redrawCurrentExercisePreservingInputs() {
+  if (!state.currentExercise || !answersRow) return;
+  const previousValues = Array.from(answersRow.querySelectorAll(".note-answer"))
+    .map((input) => input.value);
+  drawExercise(state.currentExercise);
+  const newInputs = Array.from(answersRow.querySelectorAll(".note-answer"));
+  newInputs.forEach((input, index) => {
+    input.value = previousValues[index] || "";
+  });
+}
+
 function setStatus(text) {
   if (gameStatusEl) gameStatusEl.textContent = text;
 }
@@ -295,7 +306,7 @@ if (currentYearEl) {
 }
 
 window.addEventListener("resize", () => {
-  if (!state.isGameOver) renderExercise();
+  if (!state.isGameOver) redrawCurrentExercisePreservingInputs();
 });
 
 startGame();
