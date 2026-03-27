@@ -2,18 +2,26 @@ const notationRoot = document.getElementById("notation-root");
 const answersRow = document.getElementById("answers-row");
 const feedbackRow = document.getElementById("feedback-row");
 const gameStatusEl = document.getElementById("game-status");
+const notationElBtn = document.getElementById("notation-el");
+const notationEnBtn = document.getElementById("notation-en");
 
 const NOTE_COUNT = 10;
-const NOTE_OPTIONS_BY_LEVEL = [
-  ["d/4", "e/4", "f/4", "g/4", "a/4", "b/4", "c/5", "d/5", "e/5", "f/5"],
-  ["c/4", "d/4", "e/4", "f/4", "g/4", "a/4", "b/4", "c/5", "d/5", "e/5", "f/5", "g/5"],
-  ["b/3", "c/4", "d/4", "e/4", "f/4", "g/4", "a/4", "b/4", "c/5", "d/5", "e/5", "f/5", "g/5", "a/5"],
-];
-const KEY_SIGNATURES_BY_LEVEL = [
-  ["G", "D"],
-  ["G", "D", "A", "E"],
-  ["G", "D", "A", "E", "B", "F#"],
-];
+const NOTE_OPTIONS_BY_CLEF = {
+  treble: [
+    "f/3", "g/3", "a/3", "b/3",
+    "c/4", "d/4", "e/4", "f/4", "g/4", "a/4", "b/4",
+    "c/5", "d/5", "e/5", "f/5", "g/5", "a/5", "b/5",
+    "c/6", "d/6", "e/6",
+  ],
+  bass: [
+    "a/1", "b/1",
+    "c/2", "d/2", "e/2", "f/2", "g/2", "a/2", "b/2",
+    "c/3", "d/3", "e/3", "f/3", "g/3", "a/3", "b/3",
+    "c/4", "d/4", "e/4", "f/4", "g/4",
+  ],
+};
+const AVAILABLE_CLEFS = ["treble", "bass"];
+const AVAILABLE_KEY_SIGNATURES = ["G", "D", "A", "E", "B", "F#"];
 
 const LETTER_TO_NOTE = {
   c: "ΝΤΟ",
@@ -23,6 +31,15 @@ const LETTER_TO_NOTE = {
   g: "ΣΟΛ",
   a: "ΛΑ",
   b: "ΣΙ",
+};
+const LETTER_TO_ENGLISH = {
+  c: "C",
+  d: "D",
+  e: "E",
+  f: "F",
+  g: "G",
+  a: "A",
+  b: "B",
 };
 
 const KEY_TO_SHARPS = {
@@ -35,9 +52,24 @@ const KEY_TO_SHARPS = {
   "F#": ["f", "c", "g", "d", "a", "e"],
 };
 
+const LETTER_TO_SEMITONE = {
+  c: 0,
+  d: 2,
+  e: 4,
+  f: 5,
+  g: 7,
+  a: 9,
+  b: 11,
+};
+
+const THIRD_LINE_MIDI_BY_CLEF = {
+  treble: 71,
+  bass: 50,
+};
+
 const state = {
-  level: 1,
   isGameOver: false,
+  answerNotation: "el",
   currentExpected: [],
   currentExercise: null,
   inputXPositions: [],
@@ -55,28 +87,57 @@ function normalizeAnswer(value) {
   return value.trim().toUpperCase().replace(/\s+/g, "");
 }
 
-function getDifficultyBucket(level) {
-  if (level <= 2) return 0;
-  if (level <= 4) return 1;
-  return 2;
-}
-
-function expectedNoteName(key, noteKey) {
+function expectedNoteName(key, noteKey, notationMode) {
   const letter = noteKey[0].toLowerCase();
   const isSharpFromKey = KEY_TO_SHARPS[key].includes(letter);
-  const baseName = LETTER_TO_NOTE[letter] || "";
+  const baseMap = notationMode === "en" ? LETTER_TO_ENGLISH : LETTER_TO_NOTE;
+  const baseName = baseMap[letter] || "";
   return isSharpFromKey ? `${baseName}#` : baseName;
 }
 
+function noteKeyToMidi(noteKey) {
+  const [letterRaw, octaveRaw] = noteKey.split("/");
+  const letter = letterRaw?.toLowerCase();
+  const octave = Number(octaveRaw);
+  if (!Object.prototype.hasOwnProperty.call(LETTER_TO_SEMITONE, letter) || Number.isNaN(octave)) return null;
+  return (octave + 1) * 12 + LETTER_TO_SEMITONE[letter];
+}
+
 function createExercise() {
-  const bucket = getDifficultyBucket(state.level);
-  const key = randomChoice(KEY_SIGNATURES_BY_LEVEL[bucket]);
-  const noteOptions = NOTE_OPTIONS_BY_LEVEL[bucket];
+  const clef = randomChoice(AVAILABLE_CLEFS);
+  const key = randomChoice(AVAILABLE_KEY_SIGNATURES);
+  const noteOptions = NOTE_OPTIONS_BY_CLEF[clef];
   const notes = Array.from({ length: NOTE_COUNT }, () => {
     const noteKey = randomChoice(noteOptions);
-    return { noteKey, expected: expectedNoteName(key, noteKey) };
+    return { noteKey };
   });
-  return { key, notes };
+  return { clef, key, notes };
+}
+
+function updateNotationToggleUI() {
+  if (notationElBtn) {
+    const isActive = state.answerNotation === "el";
+    notationElBtn.classList.toggle("is-active", isActive);
+    notationElBtn.setAttribute("aria-pressed", String(isActive));
+  }
+  if (notationEnBtn) {
+    const isActive = state.answerNotation === "en";
+    notationEnBtn.classList.toggle("is-active", isActive);
+    notationEnBtn.setAttribute("aria-pressed", String(isActive));
+  }
+}
+
+function setAnswerNotation(mode) {
+  if (mode !== "el" && mode !== "en") return;
+  if (state.answerNotation === mode) return;
+  state.answerNotation = mode;
+  updateNotationToggleUI();
+  clearInlineFeedback();
+  if (state.currentExercise) {
+    drawExercise(state.currentExercise);
+  } else {
+    renderExercise();
+  }
 }
 
 function getVexFlowApi() {
@@ -100,35 +161,32 @@ function drawExercise(exercise) {
   const context = renderer.getContext();
 
   const stave = new VF.Stave(10, 50, Math.max(300, width - 20));
-  stave.addClef("treble");
+  const clef = exercise.clef || "treble";
+  stave.addClef(clef);
   stave.addKeySignature(exercise.key);
-  stave.addTimeSignature("4/4");
+  const barlineNone = VF.BarlineType?.NONE ?? VF.Barline?.type?.NONE;
+  if (barlineNone !== undefined) {
+    stave.setBegBarType(barlineNone);
+    stave.setEndBarType(barlineNone);
+  }
   stave.setContext(context).draw();
 
-  const notes = exercise.notes.map((item) => new VF.StaveNote({
-    clef: "treble",
-    keys: [item.noteKey],
-    duration: "q",
-  }));
+  const notes = exercise.notes.map((item) => {
+    const midi = noteKeyToMidi(item.noteKey);
+    const thirdLineMidi = THIRD_LINE_MIDI_BY_CLEF[clef] ?? THIRD_LINE_MIDI_BY_CLEF.treble;
+    const stemDirection = midi !== null && midi >= thirdLineMidi ? VF.Stem.DOWN : VF.Stem.UP;
+    return new VF.StaveNote({
+      clef,
+      keys: [item.noteKey],
+      duration: "q",
+      stem_direction: stemDirection,
+    });
+  });
 
   const voice = new VF.Voice({ num_beats: NOTE_COUNT, beat_value: 4 });
   voice.addTickables(notes);
   new VF.Formatter().joinVoices([voice]).formatToStave([voice], stave, { align_rests: false });
   voice.draw(context, stave);
-
-  // Visual barline in the middle for two measure feel.
-  if (notes.length >= 4) {
-    const splitIdx = Math.floor(notes.length / 2) - 1;
-    const splitX = (notes[splitIdx].getAbsoluteX() + notes[splitIdx + 1].getAbsoluteX()) / 2;
-    const topY = stave.getYForLine(0);
-    const bottomY = stave.getYForLine(4);
-    if (typeof context.setLineWidth === "function") context.setLineWidth(1.2);
-    if (typeof context.setStrokeStyle === "function") context.setStrokeStyle("#0f172a");
-    context.beginPath();
-    context.moveTo(splitX, topY);
-    context.lineTo(splitX, bottomY);
-    context.stroke();
-  }
 
   const staveAbsX = stave.getX();
   const staveWidth = stave.getWidth();
@@ -143,6 +201,7 @@ function drawExercise(exercise) {
     input.style.left = `${x}px`;
     input.autocomplete = "off";
     input.spellcheck = false;
+    input.maxLength = 6;
     input.setAttribute("aria-label", `Answer for note ${index + 1}`);
 
     input.addEventListener("input", () => {
@@ -157,7 +216,9 @@ function drawExercise(exercise) {
     state.inputXPositions.push(x);
   });
 
-  state.currentExpected = exercise.notes.map((n) => normalizeAnswer(n.expected));
+  state.currentExpected = exercise.notes.map((n) => normalizeAnswer(
+    expectedNoteName(exercise.key, n.noteKey, state.answerNotation)
+  ));
   state.currentExercise = exercise;
 }
 
@@ -212,17 +273,25 @@ function maybeAdvanceLevel() {
     return;
   }
   clearInlineFeedback();
-  state.level += 1;
-  setStatus("Great! New notes loaded.");
+  setStatus("Great! New random notes loaded.");
   renderExercise();
 }
 
 function startGame() {
   state.isGameOver = false;
-  state.level = 1;
+  state.answerNotation = "el";
+  updateNotationToggleUI();
   clearInlineFeedback();
   setStatus("Fill all note names correctly to continue.");
   renderExercise();
+}
+
+notationElBtn?.addEventListener("click", () => setAnswerNotation("el"));
+notationEnBtn?.addEventListener("click", () => setAnswerNotation("en"));
+
+const currentYearEl = document.getElementById("current-year");
+if (currentYearEl) {
+  currentYearEl.textContent = String(new Date().getFullYear());
 }
 
 window.addEventListener("resize", () => {

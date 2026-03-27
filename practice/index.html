@@ -11,10 +11,15 @@
 </head>
 <body>
   <main class="practice-page">
-    <a class="back-link" href="/portfolio.html">← Back</a>
     <header class="practice-header">
-      <h1>Practice</h1>
-      <p>Find the correct note!</p>
+      <div>
+        <h1>Practice</h1>
+        <p>Find the correct note!</p>
+      </div>
+      <div class="notation-toggle" role="group" aria-label="Answer notation">
+        <button id="notation-el" class="notation-toggle-btn is-active" type="button" aria-pressed="true">ΕΛ</button>
+        <button id="notation-en" class="notation-toggle-btn" type="button" aria-pressed="false">ENG</button>
+      </div>
     </header>
     <section class="staff-card" aria-label="Treble staff practice">
       <div id="notation-root" class="notation-root"></div>
@@ -23,6 +28,12 @@
       <p id="game-status" class="game-status"></p>
     </section>
   </main>
+  <footer class="practice-footer">
+    <span class="footer-copy">© <span id="current-year">2026</span> Dionisis Diamantis. Powered by HTML, CSS & JavaScript.</span>
+    <div class="footer-links">
+      <a class="footer-back" href="/">← Back to home</a>
+    </div>
+  </footer>
   <script src="../js/vexflow.js"></script>
   <script src="../js/practice.js"></script>
 </body>
