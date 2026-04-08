@@ -5,6 +5,33 @@ if (navbar) {
   });
 }
 
+const mobileViewportQuery = window.matchMedia('(max-width: 1120px)');
+const syncMobileViewportOffset = () => {
+  if (!mobileViewportQuery.matches) {
+    document.documentElement.style.setProperty('--vv-offset-top', '0px');
+    return;
+  }
+  const vv = window.visualViewport;
+  const rawOffset = vv ? vv.offsetTop : 0;
+  const clampedOffset = Math.min(76, Math.max(0, rawOffset));
+  const currentOffset = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vv-offset-top')) || 0;
+  if (Math.abs(clampedOffset - currentOffset) < 2) return;
+  document.documentElement.style.setProperty('--vv-offset-top', `${clampedOffset}px`);
+};
+
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', syncMobileViewportOffset);
+  window.visualViewport.addEventListener('scroll', syncMobileViewportOffset);
+}
+window.addEventListener('resize', syncMobileViewportOffset);
+window.addEventListener('orientationchange', syncMobileViewportOffset);
+if (mobileViewportQuery.addEventListener) {
+  mobileViewportQuery.addEventListener('change', syncMobileViewportOffset);
+} else if (mobileViewportQuery.addListener) {
+  mobileViewportQuery.addListener(syncMobileViewportOffset);
+}
+syncMobileViewportOffset();
+
 const currentYearEl = document.getElementById('current-year');
 if (currentYearEl) {
   currentYearEl.textContent = String(new Date().getFullYear());

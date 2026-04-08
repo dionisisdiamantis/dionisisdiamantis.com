@@ -16,11 +16,13 @@
       /* Nav avatar: same gutter as hero + small nudge so it lines up with the name column */
       --page-gutter-x: 4rem;
       --nav-photo-x-nudge: 5.5rem;
+      --vv-offset-top: 0px;
     }
 
     html {
       scroll-behavior: smooth;
       scroll-padding-top: calc(var(--nav-height) + 1rem);
+      overflow-x: hidden;
     }
 
     body {
@@ -32,6 +34,7 @@
       -webkit-font-smoothing: antialiased;
       /* offset for fixed header: prevents layout gaps */
       padding-top: var(--nav-height);
+      overflow-x: hidden;
     }
 
     /* NAV */
@@ -364,6 +367,7 @@
     .project-item:hover::after { opacity: 1; }
     .project-num { font-family: var(--font-main); font-size: 12px; color: var(--muted); letter-spacing: 0.08em; font-weight: 600; }
     .project-info h3 { font-family: var(--font-main); font-size: 24px; margin-bottom: 0.4rem; color: var(--text); transition: color 0.2s; font-weight: 700; }
+    .project-info .project-link { color: inherit; text-decoration: none; }
     .project-item:hover .project-info h3 { color: var(--accent); }
     .project-info p { font-size: 14px; color: var(--muted); max-width: 560px; line-height: 1.6; text-align: justify; }
     .project-tech { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
@@ -436,6 +440,8 @@
     /* MOBILE */
     @media (max-width: 1120px) {
       :root { --nav-height: 8.5rem; --nav-photo-x-nudge: 2rem; }
+      nav { padding-top: calc(1rem + env(safe-area-inset-top)); }
+      .nav-logo.nav-logo-photo { top: var(--vv-offset-top); }
       .nav-links { display: none; }
       .nav-inner { grid-template-columns: 1fr; }
       .nav-cluster--right { display: none; }
