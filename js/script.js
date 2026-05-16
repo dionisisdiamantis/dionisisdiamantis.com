@@ -37,11 +37,83 @@ if (currentYearEl) {
   currentYearEl.textContent = String(new Date().getFullYear());
 }
 
-// Prevent hash-based refresh jumps (e.g. #contact) and always start at top.
-if (window.location.hash) {
-  history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
-  window.scrollTo(0, 0);
-}
+const initPubAbstractToggles = () => {
+  const wraps = document.querySelectorAll('#publications .pub-abstract-wrap');
+  if (wraps.length === 0) return;
+
+  const CLAMP_LINES = 3;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const getLineHeight = (abstract) => {
+    const lineHeight = parseFloat(getComputedStyle(abstract).lineHeight);
+    if (Number.isFinite(lineHeight)) return lineHeight;
+    const fontSize = parseFloat(getComputedStyle(abstract).fontSize);
+    return Number.isFinite(fontSize) ? fontSize * 1.65 : 23;
+  };
+
+  const getCollapsedHeight = (abstract) => Math.ceil(getLineHeight(abstract) * CLAMP_LINES);
+  const getFullHeight = (abstract) => abstract.scrollHeight;
+
+  const setPanelHeight = (panel, height, animate) => {
+    if (!animate) panel.style.transition = 'none';
+    panel.style.maxHeight = `${height}px`;
+    if (!animate) {
+      panel.offsetHeight;
+      panel.style.transition = '';
+    }
+  };
+
+  const applyState = (wrap, animate = true) => {
+    const panel = wrap.querySelector('.pub-abstract-panel');
+    const abstract = wrap.querySelector('.pub-abstract');
+    const toggle = wrap.querySelector('.pub-abstract-toggle');
+    if (!panel || !abstract || !toggle) return;
+
+    const collapsed = wrap.classList.contains('is-collapsed');
+    const fullHeight = getFullHeight(abstract);
+    const collapsedHeight = getCollapsedHeight(abstract);
+
+    if (collapsed) {
+      setPanelHeight(panel, collapsedHeight, animate);
+      toggle.hidden = fullHeight <= collapsedHeight + 1;
+    } else {
+      setPanelHeight(panel, fullHeight, animate);
+      toggle.hidden = false;
+    }
+  };
+
+  wraps.forEach((wrap) => {
+    const toggle = wrap.querySelector('.pub-abstract-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+      wrap.classList.toggle('is-collapsed');
+      const isCollapsed = wrap.classList.contains('is-collapsed');
+      toggle.setAttribute('aria-expanded', String(!isCollapsed));
+      toggle.setAttribute('aria-label', isCollapsed ? 'Show full abstract' : 'Collapse abstract');
+      applyState(wrap, !prefersReducedMotion);
+    });
+
+    applyState(wrap, false);
+  });
+
+  requestAnimationFrame(() => {
+    wraps.forEach((wrap) => applyState(wrap, false));
+  });
+  window.addEventListener('load', () => {
+    wraps.forEach((wrap) => applyState(wrap, false));
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      wraps.forEach((wrap) => applyState(wrap, false));
+    }, 150);
+  });
+};
+
+initPubAbstractToggles();
 
 const reveals = document.querySelectorAll('.reveal');
 if (reveals.length > 0) {

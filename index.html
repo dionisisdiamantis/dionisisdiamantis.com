@@ -8,7 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/styles.css?v=skills-stack-1" />
+  <link rel="stylesheet" href="./css/styles.css?v=pub-link-2" />
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname);
+      }
+      window.scrollTo(0, 0);
+    });
+  </script>
 </head>
 <body>
 
@@ -24,8 +33,8 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
+        <li><a href="#publications">Publications</a></li>
       </ul>
-      <div class="nav-cluster nav-cluster--right" aria-hidden="true"></div>
     </div>
   </nav>
 
@@ -86,54 +95,62 @@
   <section id="skills">
     <div class="section-label reveal">Skills</div>
     <h2 class="section-title reveal">What I work with</h2>
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-card-icon">01 / Frontend</div>
-        <h3>User Interfaces</h3>
-        <div class="skill-tags"><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">Next.js</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
+    <div class="projects-list">
+      <div class="project-item reveal">
+        <div class="project-info">
+          <p class="skill-label">Frontend</p>
+          <h3>User Interfaces</h3>
+        </div>
+        <div class="project-tech"><span class="project-tag">React</span><span class="project-tag">JavaScript</span><span class="project-tag">Next.js</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-icon">02 / Backend</div>
-        <h3>Server & APIs</h3>
-        <div class="skill-tags"><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">Spring Boot</span><span class="tag">REST APIs</span><span class="tag">JSON</span><span class="tag">Postman</span><span class="tag">OpenCV</span><span class="tag">MediaPipe</span><span class="tag">Pycaw</span></div>
+      <div class="project-item reveal">
+        <div class="project-info">
+          <p class="skill-label">Backend</p>
+          <h3>Server & APIs</h3>
+        </div>
+        <div class="project-tech"><span class="project-tag">Node.js</span><span class="project-tag">Python</span><span class="project-tag">Spring Boot</span><span class="project-tag">REST APIs</span><span class="project-tag">JSON</span><span class="project-tag">Postman</span><span class="project-tag">OpenCV</span><span class="project-tag">MediaPipe</span><span class="project-tag">Pycaw</span></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-icon">03 / Data</div>
-        <h3>Databases</h3>
-        <div class="skill-tags"><span class="tag">MySQL</span><span class="tag">MariaDB</span></div>
+      <div class="project-item reveal">
+        <div class="project-info">
+          <p class="skill-label">Data</p>
+          <h3>Databases</h3>
+        </div>
+        <div class="project-tech"><span class="project-tag">MySQL</span><span class="project-tag">MariaDB</span></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-icon">04 / DevOps</div>
-        <h3>Infrastructure</h3>
-        <div class="skill-tags"><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">Nginx</span><span class="tag">YAML</span></div>
+      <div class="project-item reveal">
+        <div class="project-info">
+          <p class="skill-label">DevOps</p>
+          <h3>Infrastructure</h3>
+        </div>
+        <div class="project-tech"><span class="project-tag">Docker</span><span class="project-tag">Linux</span><span class="project-tag">Nginx</span><span class="project-tag">YAML</span></div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-icon">05 / Tools</div>
-        <h3>Workflow</h3>
-        <div class="skill-tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Figma</span></div>
+      <div class="project-item reveal">
+        <div class="project-info">
+          <p class="skill-label">Tools</p>
+          <h3>Workflow</h3>
+        </div>
+        <div class="project-tech"><span class="project-tag">Git</span><span class="project-tag">GitHub</span><span class="project-tag">Figma</span></div>
       </div>
     </div>
+
   </section>
 
   <section id="projects">
     <div class="section-label reveal">Projects</div>
     <h2 class="section-title reveal">Selected work</h2>
     <div class="projects-list">
-      <div class="project-item reveal">
-        <div class="project-num">01</div>
-        <div class="project-info"><h3><a class="project-link" href="https://github.com/dionisisdiamantis/windows-setup-main" target="_blank" rel="noopener">Windows Setup Automation</a></h3><p>An Ansible playbook for provisioning a complete Windows 10/11 development environment, including PowerShell profile setup, environment variables, PATH management, WinGet package installation, and optional development workspace/bootstrap tasks via tags.</p></div>
+      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/windows-setup-main" target="_blank" rel="noopener noreferrer" aria-label="Windows Setup Automation on GitHub">
+        <div class="project-info"><h3>Windows Setup Automation</h3><p>An Ansible playbook for provisioning a complete Windows 10/11 development environment, including PowerShell profile setup, environment variables, PATH management, WinGet package installation, and optional development workspace/bootstrap tasks via tags.</p></div>
         <div class="project-tech"><span class="project-tag">Ansible</span><span class="project-tag">PowerShell</span><span class="project-tag">WinGet</span><span class="project-tag">Lua</span><span class="project-tag">Jinja</span><span class="project-tag">Shell</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-num">02</div>
-        <div class="project-info"><h3><a class="project-link" href="https://github.com/dionisisdiamantis/cv-hand-gesture-volume-control" target="_blank" rel="noopener">Hand Gesture Volume Control</a></h3><p>A computer vision desktop app that controls Windows master volume by measuring thumb-index fingertip distance in real time via webcam input, with configurable calibration and smoothing for stable gesture response.</p></div>
+      </a>
+      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/cv-hand-gesture-volume-control" target="_blank" rel="noopener noreferrer" aria-label="Hand Gesture Volume Control on GitHub">
+        <div class="project-info"><h3>Hand Gesture Volume Control</h3><p>A computer vision desktop app that controls Windows master volume by measuring thumb-index fingertip distance in real time via webcam input, with configurable calibration and smoothing for stable gesture response.</p></div>
         <div class="project-tech"><span class="project-tag">Python</span><span class="project-tag">OpenCV</span><span class="project-tag">MediaPipe</span><span class="project-tag">Pycaw</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-num">03</div>
-        <div class="project-info"><h3><a class="project-link" href="https://github.com/dionisisdiamantis/LyriSearch-Lucene" target="_blank" rel="noopener">LyriSearch</a></h3><p>A Java-based lyrics search engine developed for the Information Retrieval course, using Lucene Core for indexing and advanced search (phrase, fuzzy, wildcard), with pagination, highlighting, and recommendations based on search history.</p></div>
+      </a>
+      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/LyriSearch-Lucene" target="_blank" rel="noopener noreferrer" aria-label="LyriSearch on GitHub">
+        <div class="project-info"><h3>LyriSearch</h3><p>A Java-based lyrics search engine developed for the Information Retrieval course, using Lucene Core for indexing and advanced search (phrase, fuzzy, wildcard), with pagination, highlighting, and recommendations based on search history.</p></div>
         <div class="project-tech"><span class="project-tag">Java</span><span class="project-tag">Lucene Core</span><span class="project-tag">Maven</span></div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -150,7 +167,7 @@
                 <h3>Computer Engineer</h3>
                 <div class="company">Cognity S.A.</div>
               </div>
-              <p>Computer engineering at Cognity S.A., contributing to product development and delivery across frontend and backend systems.</p>
+              <p>Computer engineering at <a class="project-link" href="https://www.cognity.gr" target="_blank" rel="noopener">Cognity S.A.</a>, contributing to product development and delivery across frontend and backend systems. <span class="exp-soon">(update soon)</span></p>
             </div>
             <div class="exp-badge">
               <img src="./assets/images/cognity.png" alt="Cognity S.A. logo" />
@@ -212,6 +229,112 @@
     </div>
   </section>
 
+  <section id="publications">
+    <div class="section-label reveal">Publications</div>
+    <h2 class="section-title reveal">Published work</h2>
+    <div class="projects-list">
+      <article class="pub-entry reveal">
+        <a
+          class="pub-entry-link"
+          href="https://arxiv.org/abs/2605.14722"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View on arXiv: A Template-Driven Platform for Contextualised Researcher Profiles"
+        ></a>
+        <div class="pub-header">
+          <p class="pub-date">May 2026</p>
+          <div class="pub-main">
+            <div class="pub-title-row">
+              <h3 class="pub-title">A Template-Driven Platform for Contextualised Researcher Profiles</h3>
+              <a
+                class="pub-download"
+                href="./assets/papers/2605.14722v1.pdf"
+                download="2605.14722v1.pdf"
+                aria-label="Download paper PDF"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+              </a>
+            </div>
+            <p class="pub-authors">
+              Serafeim Chatzopoulos, Paris Koloveas, Kleanthis Vichos,
+              <strong>Dionysis Diamantis</strong>, Thanasis Vergoulis.
+            </p>
+          </div>
+        </div>
+        <div class="pub-abstract-block">
+          <div class="pub-abstract-content">
+            <hr class="pub-abstract-rule" />
+            <p class="pub-abstract-label">ABSTRACT</p>
+            <div class="pub-abstract-wrap is-collapsed">
+              <div class="pub-abstract-panel">
+              <p class="pub-abstract">Modern researchers engage in diverse activities, assume multiple contribution roles, and produce a variety of outputs beyond traditional publications. This broader view of research contributions is increasingly recognised by responsible research assessment initiatives. However, existing researcher profiling platforms remain largely focused on publications and publication-centric indicators, offering limited support for contextualised and multi-dimensional representations of research careers. This paper presents BIP! Scholar, a platform that supports flexible researcher profiling through a template-driven approach. Researchers can create profiles tailored to different presentation or assessment contexts using track-based, narrative-style, or hybrid templates which support the representation of diverse outputs, contribution roles, and broader research activities. The platform also supports research assessment experts who wish to design and evaluate experimental profile templates.</p>
+              </div>
+              <button type="button" class="pub-abstract-toggle" aria-expanded="false" aria-label="Show full abstract" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="pub-entry reveal">
+        <a
+          class="pub-entry-link"
+          href="https://arxiv.org/abs/2508.03962"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View on arXiv: Accelerating Scientific Discovery with Multi-Document Summarization of Impact-Ranked Papers"
+        ></a>
+        <div class="pub-header">
+          <p class="pub-date">Aug 2025</p>
+          <div class="pub-main">
+            <div class="pub-title-row">
+              <h3 class="pub-title">Accelerating Scientific Discovery with Multi-Document Summarization of Impact-Ranked Papers</h3>
+              <a
+                class="pub-download"
+                href="./assets/papers/2508.03962v1.pdf"
+                download="2508.03962v1.pdf"
+                aria-label="Download paper PDF"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+              </a>
+            </div>
+            <p class="pub-authors">
+              Paris Koloveas, Serafeim Chatzopoulos,
+              <strong>Dionysis Diamantis</strong>, Christos Tryfonopoulos, Thanasis Vergoulis.
+            </p>
+          </div>
+        </div>
+        <div class="pub-abstract-block">
+          <div class="pub-abstract-content">
+            <hr class="pub-abstract-rule" />
+            <p class="pub-abstract-label">ABSTRACT</p>
+            <div class="pub-abstract-wrap is-collapsed">
+              <div class="pub-abstract-panel">
+              <p class="pub-abstract">The growing volume of scientific literature makes it challenging for scientists to move from a list of papers to a synthesized understanding of a topic. Because of the constant influx of new papers on a daily basis, even if a scientist identifies a promising set of papers, they still face the tedious task of individually reading through dozens of titles and abstracts to make sense of occasionally conflicting findings. To address this critical bottleneck in the research workflow, we introduce a summarization feature to BIP! Finder, a scholarly search engine that ranks literature based on distinct impact aspects like popularity and influence. Our approach enables users to generate two types of summaries from top-ranked search results: a concise summary for an instantaneous at-a-glance comprehension and a more comprehensive literature review-style summary for greater, better-organized comprehension. This ability dynamically leverages BIP! Finder's already existing impact-based ranking and filtering features to generate context-sensitive, synthesized narratives that can significantly accelerate literature discovery and comprehension.</p>
+              </div>
+              <button type="button" class="pub-abstract-toggle" aria-expanded="false" aria-label="Show full abstract" hidden>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <section id="contact">
     <div class="contact-inner">
       <div class="section-label reveal">Contact</div>
@@ -232,6 +355,6 @@
     </div>
   </footer>
 
-  <script src="./js/script.js"></script>
+  <script src="./js/script.js?v=pub-link-2"></script>
 </body>
 </html>
