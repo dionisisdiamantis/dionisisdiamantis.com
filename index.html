@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/styles.css?v=pub-link-2" />
+  <link rel="stylesheet" href="./css/styles.css?v=cv-download-2" />
   <script>
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     document.addEventListener('DOMContentLoaded', () => {
@@ -30,10 +30,11 @@
       </div>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#publications">Publications</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
       </ul>
     </div>
   </nav>
@@ -49,7 +50,11 @@
         <p class="hero-title">Computer Scientist & Engineer</p>
         <p class="hero-desc">I design and build full-stack SaaS solutions, from frontend interfaces to backend services and database logic, with emphasis on performance, maintainability, and clean architecture. Based in Athens, Greece.</p>
         <div class="hero-actions">
-          <a class="btn-primary" href="#projects">View my work</a>
+          <a
+            class="btn-primary"
+            href="./assets/papers/CV_DIONYSIOS_DIAMANTIS.pdf"
+            download="Dionisis_Diamantis_CV.pdf"
+          >Download CV ↓</a>
           <a class="btn-ghost" href="#contact">Get in touch →</a>
         </div>
       </div>
@@ -92,67 +97,6 @@
     </div>
   </section>
 
-  <section id="skills">
-    <div class="section-label reveal">Skills</div>
-    <h2 class="section-title reveal">What I work with</h2>
-    <div class="projects-list">
-      <div class="project-item reveal">
-        <div class="project-info">
-          <p class="skill-label">Frontend</p>
-          <h3>User Interfaces</h3>
-        </div>
-        <div class="project-tech"><span class="project-tag">React</span><span class="project-tag">JavaScript</span><span class="project-tag">Next.js</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-info">
-          <p class="skill-label">Backend</p>
-          <h3>Server & APIs</h3>
-        </div>
-        <div class="project-tech"><span class="project-tag">Node.js</span><span class="project-tag">Python</span><span class="project-tag">Spring Boot</span><span class="project-tag">REST APIs</span><span class="project-tag">JSON</span><span class="project-tag">Postman</span><span class="project-tag">OpenCV</span><span class="project-tag">MediaPipe</span><span class="project-tag">Pycaw</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-info">
-          <p class="skill-label">Data</p>
-          <h3>Databases</h3>
-        </div>
-        <div class="project-tech"><span class="project-tag">MySQL</span><span class="project-tag">MariaDB</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-info">
-          <p class="skill-label">DevOps</p>
-          <h3>Infrastructure</h3>
-        </div>
-        <div class="project-tech"><span class="project-tag">Docker</span><span class="project-tag">Linux</span><span class="project-tag">Nginx</span><span class="project-tag">YAML</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-info">
-          <p class="skill-label">Tools</p>
-          <h3>Workflow</h3>
-        </div>
-        <div class="project-tech"><span class="project-tag">Git</span><span class="project-tag">GitHub</span><span class="project-tag">Figma</span></div>
-      </div>
-    </div>
-
-  </section>
-
-  <section id="projects">
-    <div class="section-label reveal">Projects</div>
-    <h2 class="section-title reveal">Selected work</h2>
-    <div class="projects-list">
-      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/windows-setup-main" target="_blank" rel="noopener noreferrer" aria-label="Windows Setup Automation on GitHub">
-        <div class="project-info"><h3>Windows Setup Automation</h3><p>An Ansible playbook for provisioning a complete Windows 10/11 development environment, including PowerShell profile setup, environment variables, PATH management, WinGet package installation, and optional development workspace/bootstrap tasks via tags.</p></div>
-        <div class="project-tech"><span class="project-tag">Ansible</span><span class="project-tag">PowerShell</span><span class="project-tag">WinGet</span><span class="project-tag">Lua</span><span class="project-tag">Jinja</span><span class="project-tag">Shell</span></div>
-      </a>
-      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/cv-hand-gesture-volume-control" target="_blank" rel="noopener noreferrer" aria-label="Hand Gesture Volume Control on GitHub">
-        <div class="project-info"><h3>Hand Gesture Volume Control</h3><p>A computer vision desktop app that controls Windows master volume by measuring thumb-index fingertip distance in real time via webcam input, with configurable calibration and smoothing for stable gesture response.</p></div>
-        <div class="project-tech"><span class="project-tag">Python</span><span class="project-tag">OpenCV</span><span class="project-tag">MediaPipe</span><span class="project-tag">Pycaw</span></div>
-      </a>
-      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/LyriSearch-Lucene" target="_blank" rel="noopener noreferrer" aria-label="LyriSearch on GitHub">
-        <div class="project-info"><h3>LyriSearch</h3><p>A Java-based lyrics search engine developed for the Information Retrieval course, using Lucene Core for indexing and advanced search (phrase, fuzzy, wildcard), with pagination, highlighting, and recommendations based on search history.</p></div>
-        <div class="project-tech"><span class="project-tag">Java</span><span class="project-tag">Lucene Core</span><span class="project-tag">Maven</span></div>
-      </a>
-    </div>
-  </section>
 
   <section id="experience">
     <div class="section-label reveal">Experience</div>
@@ -228,6 +172,7 @@
       </div>
     </div>
   </section>
+
 
   <section id="publications">
     <div class="section-label reveal">Publications</div>
@@ -335,6 +280,128 @@
     </div>
   </section>
 
+
+  <section id="projects">
+    <div class="section-label reveal">Projects</div>
+    <h2 class="section-title reveal">Selected work</h2>
+    <div class="projects-list">
+      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/windows-setup-main" target="_blank" rel="noopener noreferrer" aria-label="Windows Setup Automation on GitHub">
+        <div class="project-info"><h3>Windows Setup Automation</h3><p>An Ansible playbook for provisioning a complete Windows 10/11 development environment, including PowerShell profile setup, environment variables, PATH management, WinGet package installation, and optional development workspace/bootstrap tasks via tags.</p></div>
+        <div class="project-tech"><span class="project-tag">Ansible</span><span class="project-tag">PowerShell</span><span class="project-tag">WinGet</span><span class="project-tag">Lua</span><span class="project-tag">Jinja</span><span class="project-tag">Shell</span></div>
+      </a>
+      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/cv-hand-gesture-volume-control" target="_blank" rel="noopener noreferrer" aria-label="Hand Gesture Volume Control on GitHub">
+        <div class="project-info"><h3>Hand Gesture Volume Control</h3><p>A computer vision desktop app that controls Windows master volume by measuring thumb-index fingertip distance in real time via webcam input, with configurable calibration and smoothing for stable gesture response.</p></div>
+        <div class="project-tech"><span class="project-tag">Python</span><span class="project-tag">OpenCV</span><span class="project-tag">MediaPipe</span><span class="project-tag">Pycaw</span></div>
+      </a>
+      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/LyriSearch-Lucene" target="_blank" rel="noopener noreferrer" aria-label="LyriSearch on GitHub">
+        <div class="project-info"><h3>LyriSearch</h3><p>A Java-based lyrics search engine developed for the Information Retrieval course, using Lucene Core for indexing and advanced search (phrase, fuzzy, wildcard), with pagination, highlighting, and recommendations based on search history.</p></div>
+        <div class="project-tech"><span class="project-tag">Java</span><span class="project-tag">Lucene Core</span><span class="project-tag">Maven</span></div>
+      </a>
+    </div>
+  </section>
+
+
+  <section id="skills">
+    <div class="section-label reveal">Skills</div>
+    <h2 class="section-title reveal">What I work with</h2>
+    <div class="projects-list">
+      <div class="project-item reveal">
+        <div class="project-info">
+          <p class="skill-label">Frontend</p>
+          <h3>User Interfaces</h3>
+        </div>
+        <div class="project-tech"><span class="project-tag">React</span><span class="project-tag">JavaScript</span><span class="project-tag">Next.js</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span></div>
+      </div>
+      <div class="project-item reveal">
+        <div class="project-info">
+          <p class="skill-label">Backend</p>
+          <h3>Server & APIs</h3>
+        </div>
+        <div class="project-tech"><span class="project-tag">Node.js</span><span class="project-tag">Python</span><span class="project-tag">Spring Boot</span><span class="project-tag">REST APIs</span><span class="project-tag">JSON</span><span class="project-tag">Postman</span><span class="project-tag">OpenCV</span><span class="project-tag">MediaPipe</span><span class="project-tag">Pycaw</span></div>
+      </div>
+      <div class="project-item reveal">
+        <div class="project-info">
+          <p class="skill-label">Data</p>
+          <h3>Databases</h3>
+        </div>
+        <div class="project-tech"><span class="project-tag">MySQL</span><span class="project-tag">MariaDB</span></div>
+      </div>
+      <div class="project-item reveal">
+        <div class="project-info">
+          <p class="skill-label">DevOps</p>
+          <h3>Infrastructure</h3>
+        </div>
+        <div class="project-tech"><span class="project-tag">Docker</span><span class="project-tag">Linux</span><span class="project-tag">Nginx</span><span class="project-tag">YAML</span></div>
+      </div>
+      <div class="project-item reveal">
+        <div class="project-info">
+          <p class="skill-label">Tools</p>
+          <h3>Workflow</h3>
+        </div>
+        <div class="project-tech"><span class="project-tag">Git</span><span class="project-tag">GitHub</span><span class="project-tag">Figma</span></div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="education">
+    <div class="section-label reveal">Education</div>
+    <h2 class="section-title reveal">Where I studied</h2>
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-body">
+          <div class="exp-body-row">
+            <div class="exp-body-text">
+              <div class="exp-body-heading">
+                <h3>Certificate in Machine Learning: Practical Applications</h3>
+                <div class="company">London School of Economics and Political Science (LSE)</div>
+              </div>
+              <p>Machine learning methods using R.</p>
+            </div>
+            <div class="exp-badge">
+              <img src="./assets/images/lse.jpg" alt="London School of Economics and Political Science logo" width="76" height="76" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-body">
+          <div class="exp-body-row">
+            <div class="exp-body-text">
+              <div class="exp-body-heading">
+                <h3>Integrated Master's &amp; Bachelor's Degree in Computer Science &amp; Engineering</h3>
+                <div class="company">University of Ioannina</div>
+              </div>
+              <p>Thesis: Resource Allocation Mechanisms in Distributed Edge Cloud Infrastructures</p>
+            </div>
+            <div class="exp-badge">
+              <img src="./assets/images/πανεπιστημιο%20ιωαννινων.jpg" alt="University of Ioannina logo" width="76" height="76" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-body">
+          <div class="exp-body-row">
+            <div class="exp-body-text">
+              <div class="exp-body-heading">
+                <h3>High School Diploma</h3>
+                <div class="company">Hellenic American Educational Foundation — Athens College</div>
+              </div>
+              <p>Participated in Mathematics Club.</p>
+              <p>Represented Athens College at CERN.</p>
+            </div>
+            <div class="exp-badge">
+              <img src="./assets/images/athens%20colege.jpg" alt="Athens College logo" width="76" height="76" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <section id="contact">
     <div class="contact-inner">
       <div class="section-label reveal">Contact</div>
@@ -355,6 +422,6 @@
     </div>
   </footer>
 
-  <script src="./js/script.js?v=pub-link-2"></script>
+  <script src="./js/script.js?v=cv-download-2"></script>
 </body>
 </html>
