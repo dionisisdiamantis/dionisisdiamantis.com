@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/styles.css?v=cv-download-2" />
+  <link rel="stylesheet" href="./css/styles.css?v=exp-badge-fill-1" />
   <script>
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     document.addEventListener('DOMContentLoaded', () => {
@@ -28,7 +28,18 @@
           <img src="./assets/images/me.jpeg" alt="" width="156" height="156" decoding="async" />
         </a>
       </div>
-      <ul class="nav-links">
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        aria-label="Open navigation menu"
+      >
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="nav-menu">
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#publications">Publications</a></li>
@@ -37,6 +48,7 @@
         <li><a href="#education">Education</a></li>
       </ul>
     </div>
+    <button type="button" class="nav-backdrop" aria-label="Close navigation menu" tabindex="-1" aria-hidden="true"></button>
   </nav>
 
   <section id="hero">
@@ -422,6 +434,6 @@
     </div>
   </footer>
 
-  <script src="./js/script.js?v=cv-download-2"></script>
+  <script src="./js/script.js?v=exp-badge-fill-1"></script>
 </body>
 </html>
