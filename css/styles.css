@@ -335,12 +335,13 @@
     .hero-terminal-command {
       margin: 0.3rem 0.85rem 1rem;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 14px;
+      font-size: clamp(11px, 1.4vw, 14px);
       color: #a5f3fc;
       white-space: nowrap;
       overflow: hidden;
       border-right: 2px solid rgba(165, 243, 252, 0.8);
       width: 0;
+      max-width: 100%;
       animation: typeCommand 2.8s steps(31, end) 1 forwards, caretBlink 0.9s step-end infinite;
     }
     .btn-primary { font-family: var(--font-main); font-size: 13px; letter-spacing: 0.03em; background: var(--accent); color: #fff; font-weight: 600; padding: 0.85rem 2rem; border-radius: 6px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
@@ -420,8 +421,8 @@
     }
     .about-copy p strong { color: var(--text); font-weight: 600; }
     .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .stat { background: var(--bg2); padding: 2rem; }
-    .stat-num { font-family: var(--font-main); font-size: 52px; line-height: 1; color: var(--text); margin-bottom: 0.5rem; font-weight: 700; }
+    .stat { background: var(--bg2); padding: 2rem; min-width: 0; }
+    .stat-num { font-family: var(--font-main); font-size: clamp(32px, 8vw, 52px); line-height: 1; color: var(--text); margin-bottom: 0.5rem; font-weight: 700; overflow-wrap: anywhere; }
     .stat-num span { color: var(--accent); }
     .stat-label { font-size: 13px; color: var(--muted); letter-spacing: 0.05em; }
 
@@ -728,6 +729,20 @@
       object-fit: contain; /* keep aspect ratio */
       object-position: center center; /* keep visuals consistent across different logo paddings */
     }
+    .exp-badge.exp-badge--intralot {
+      background: #e60000;
+    }
+    .exp-badge.exp-badge--intralot img {
+      width: 85%;
+      height: 85%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    .exp-badge.exp-badge--kyvera img {
+      width: 94%;
+      height: 94%;
+      object-fit: contain;
+    }
     .exp-date { font-family: var(--font-main); font-size: 12px; color: var(--muted); padding-top: 4px; letter-spacing: 0.04em; font-weight: 500; }
     .exp-body h3 { font-size: 18px; font-weight: 700; margin-bottom: 0.25rem; color: var(--text); }
     .exp-body .company { font-family: var(--font-main); font-size: 13px; color: var(--accent); font-weight: 600; }
@@ -747,7 +762,7 @@
     .contact-inner { max-width: 640px; margin: 0 auto; }
     .contact-inner .section-label { justify-content: center; }
     .contact-inner .section-label::after { display: none; }
-    .contact-email { font-family: var(--font-main); font-size: clamp(22px, 3.5vw, 42px); color: var(--text); text-decoration: none; display: block; margin: 2rem 0; transition: color 0.2s; font-weight: 700; }
+    .contact-email { font-family: var(--font-main); font-size: clamp(18px, 3.5vw, 42px); color: var(--text); text-decoration: none; display: block; margin: 2rem 0; transition: color 0.2s; font-weight: 700; white-space: nowrap; }
     .contact-email:hover { color: var(--accent); }
     .contact-email em { font-style: normal; }
     .contact-sub { color: var(--muted); font-size: 15px; margin-bottom: 3rem; }
@@ -874,7 +889,7 @@
       .hero-desc { flex: none; margin-bottom: 2rem; }
       .hero-actions { margin-top: 0; padding-top: 0; }
       .hero-photo-wrap { justify-self: start; align-self: start; width: min(100%, 360px); height: auto; aspect-ratio: 590 / 500; margin-top: 0; transform: none; }
-      .hero-terminal-command { font-size: 13px; }
+      .hero-terminal-command { font-size: 12px; margin: 0.3rem 0.65rem 0.85rem; }
       .hero-scroll { display: none; }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-stats { grid-template-columns: 1fr 1fr; }
@@ -930,6 +945,15 @@
         max-height: none;
         object-fit: contain;
       }
+      #experience .exp-badge.exp-badge--intralot img {
+        width: 85%;
+        height: 85%;
+        border-radius: 50%;
+      }
+      #experience .exp-badge.exp-badge--ntua img {
+        width: 100%;
+        height: 100%;
+      }
       #education .exp-badge img {
         width: 3.5rem;
         height: 3.5rem;
@@ -937,5 +961,25 @@
         max-height: calc(100% - 1.25rem);
         object-fit: contain;
       }
-      footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; }
+      footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; text-align: center; }
+      .footer-copy { text-align: center; }
+    }
+
+    @media (max-width: 900px) {
+      .contact-email {
+        font-size: clamp(11px, 5vw, 28px);
+        white-space: nowrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-stats { grid-template-columns: 1fr; }
+      .stat { padding: 1.5rem; }
+      .stat-num { font-size: clamp(30px, 11vw, 44px); }
+      .hero-terminal-command { font-size: 11px; margin: 0.3rem 0.55rem 0.75rem; }
+      .contact-email {
+        font-size: clamp(11px, 4.8vw, 22px);
+        margin: 1.5rem 0;
+      }
+      .contact-inner { padding: 0; }
     }
