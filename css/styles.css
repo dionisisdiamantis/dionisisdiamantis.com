@@ -675,7 +675,10 @@
     #education .exp-badge {
       width: var(--exp-badge-col);
       height: var(--exp-badge-col);
-      background: var(--bg);
+      background: var(--bg2);
+    }
+    #education .exp-badge img {
+      mix-blend-mode: multiply;
     }
     #education .exp-badge img {
       width: 4.75rem;
