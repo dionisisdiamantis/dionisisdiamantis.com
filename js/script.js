@@ -240,7 +240,11 @@ const markFallback = () => {
 if (contributionsEl || monthlyCommitsEl) {
   markFallback();
 
-  fetch('https://github-contributions-api.jogruber.de/v4/dionisisdiamantis?y=last')
+  // The total covers the previous calendar year; the current year is fetched too for this month's commits.
+  const currentYear = new Date().getFullYear();
+  const previousYear = currentYear - 1;
+
+  fetch(`https://github-contributions-api.jogruber.de/v4/dionisisdiamantis?y=${previousYear}&y=${currentYear}`)
     .then((res) => {
       if (!res.ok) throw new Error('Failed to fetch contributions');
       return res.json();
@@ -249,9 +253,7 @@ if (contributionsEl || monthlyCommitsEl) {
       let hasLiveData = false;
 
       if (contributionsEl) {
-        const total = typeof data?.total?.lastYear === 'number'
-          ? data.total.lastYear
-          : data?.total?.[0]?.count;
+        const total = data?.total?.[previousYear];
         if (typeof total === 'number' && total >= 0) {
           contributionsEl.innerHTML = `${total}<span>+</span>`;
           contributionsEl.dataset.source = 'live';
@@ -261,9 +263,7 @@ if (contributionsEl || monthlyCommitsEl) {
 
       if (monthlyCommitsEl) {
         const entries = Array.isArray(data?.contributions) ? data.contributions : [];
-        const now = new Date();
-        const currentYear = now.getFullYear();
-        const currentMonth = now.getMonth();
+        const currentMonth = new Date().getMonth();
 
         const monthCommits = entries
           .filter((entry) => {
