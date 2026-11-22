@@ -256,3 +256,44 @@ if (contributionsEl || monthlyCommitsEl) {
       console.warn('[stats] fallback mode:', err.message);
     });
 }
+// 3D depth: cards tilt toward the pointer, and the hero layer stack turns with it.
+// Mouse/trackpad only, and off when the visitor prefers reduced motion.
+const initDepth = () => {
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!finePointer || reducedMotion) return;
+
+  const MAX_TILT = 7;
+  document.querySelectorAll('[data-tilt]').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      card.classList.add('is-tilting');
+      card.style.setProperty('--ry', `${(x - 0.5) * MAX_TILT * 2}deg`);
+      card.style.setProperty('--rx', `${(0.5 - y) * MAX_TILT * 2}deg`);
+    });
+    card.addEventListener('pointerleave', () => {
+      card.classList.remove('is-tilting');
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+  });
+
+  const hero = document.getElementById('hero');
+  const stack = hero?.querySelector('.stack');
+  if (!hero || !stack) return;
+  hero.addEventListener('pointermove', (event) => {
+    const rect = hero.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    stack.style.setProperty('--tilt-z', `${x * 16}deg`);
+    stack.style.setProperty('--tilt-x', `${y * -10}deg`);
+  });
+  hero.addEventListener('pointerleave', () => {
+    stack.style.setProperty('--tilt-z', '0deg');
+    stack.style.setProperty('--tilt-x', '0deg');
+  });
+};
+
+initDepth();

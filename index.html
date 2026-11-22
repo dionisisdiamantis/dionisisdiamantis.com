@@ -14,8 +14,8 @@
   <link rel="apple-touch-icon" href="/assets/favicon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/styles.css?v=redesign-1" />
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/styles.css?v=redesign-2" />
   <script>
     document.documentElement.classList.add('js');
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -60,10 +60,8 @@
 
   <main>
     <section id="hero">
-      <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-inner">
         <div class="hero-main">
-          <p class="hero-status"><span class="status-dot" aria-hidden="true"></span>Open to work</p>
           <h1 class="hero-name">Dionisis<br>Diamantis<span class="hero-name-dot">.</span></h1>
           <p class="hero-title">Computer Scientist & Engineer</p>
           <p class="hero-desc">I design and build full-stack SaaS solutions, from frontend interfaces to backend services and database logic, with emphasis on performance, maintainability, and clean architecture. Based in Athens, Greece.</p>
@@ -83,15 +81,22 @@
           </div>
         </div>
 
-        <figure class="hero-portrait" aria-hidden="true">
-          <div class="portrait-orbit"><span class="portrait-orbit-dot"></span></div>
-          <div class="portrait-ring">
-            <img src="./assets/images/me.jpeg" alt="" width="800" height="800" decoding="async" />
+        <div class="stack" aria-hidden="true">
+          <div class="stack-scene">
+            <div class="stack-ground"></div>
+            <div class="slab slab--ai" style="--i: 0"><span>AI Agents</span></div>
+            <div class="slab slab--data" style="--i: 1"><span>Data</span></div>
+            <div class="slab slab--backend" style="--i: 2"><span>Backend</span></div>
+            <div class="slab slab--frontend" style="--i: 3"><span>Frontend</span></div>
           </div>
-        </figure>
+        </div>
       </div>
 
       <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="meta-key">Status</span>
+          <span class="meta-value"><span class="status-dot" aria-hidden="true"></span>Open to work</span>
+        </div>
         <div class="hero-meta-item">
           <span class="meta-key">Now</span>
           <span class="meta-value">Data &amp; AI Engineer · Cognity S.A.</span>
@@ -102,7 +107,7 @@
         </div>
         <div class="hero-meta-item hero-meta-motto">
           <span class="meta-key">Motto</span>
-          <span class="meta-value mono">&gt; Progress creates direction<span class="caret" aria-hidden="true"></span></span>
+          <span class="meta-value mono">&gt; Progress creates direction...</span>
         </div>
       </div>
     </section>
@@ -111,7 +116,6 @@
       <div class="about-grid">
         <div class="about-copy reveal">
           <header class="section-head">
-            <p class="section-label"><span class="section-index">01</span>About</p>
             <h2 class="section-title">Building things<br>that matter</h2>
           </header>
           <p>I'm a <strong>Computer Scientist & Engineer</strong> with an Integrated Master's degree in Computer Science & Engineering from the University of Ioannina.</p>
@@ -129,7 +133,6 @@
 
     <section id="experience">
       <header class="section-head reveal">
-        <p class="section-label"><span class="section-index">02</span>Experience</p>
         <h2 class="section-title">Where I've worked</h2>
       </header>
       <div class="timeline">
@@ -203,7 +206,6 @@
 
     <section id="publications">
       <header class="section-head reveal">
-        <p class="section-label"><span class="section-index">03</span>Publications</p>
         <h2 class="section-title">Published work</h2>
       </header>
       <div class="pub-list">
@@ -291,34 +293,21 @@
 
     <section id="projects">
       <header class="section-head reveal">
-        <p class="section-label"><span class="section-index">04</span>Projects</p>
         <h2 class="section-title">Selected work</h2>
       </header>
-      <div class="card-grid">
-        <a class="project-card reveal" href="https://github.com/dionisisdiamantis/windows-setup-main" target="_blank" rel="noopener noreferrer" aria-label="Windows Setup Automation on GitHub">
-          <div class="card-top">
-            <span class="card-index">01</span>
-            <svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg>
-          </div>
-          <h3>Windows Setup Automation</h3>
+      <div class="card-grid reveal">
+        <a class="project-card" data-tilt href="https://github.com/dionisisdiamantis/windows-setup-main" target="_blank" rel="noopener noreferrer" aria-label="Windows Setup Automation on GitHub">
+          <div class="card-head"><h3>Windows Setup Automation</h3><svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg></div>
           <p>An Ansible playbook for provisioning a complete Windows 10/11 development environment, including PowerShell profile setup, environment variables, PATH management, WinGet package installation, and optional development workspace/bootstrap tasks via tags.</p>
           <div class="tags"><span class="tag">Ansible</span><span class="tag">PowerShell</span><span class="tag">WinGet</span><span class="tag">Lua</span><span class="tag">Jinja</span><span class="tag">Shell</span></div>
         </a>
-        <a class="project-card reveal" href="https://github.com/dionisisdiamantis/cv-hand-gesture-volume-control" target="_blank" rel="noopener noreferrer" aria-label="Hand Gesture Volume Control on GitHub">
-          <div class="card-top">
-            <span class="card-index">02</span>
-            <svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg>
-          </div>
-          <h3>Hand Gesture Volume Control</h3>
+        <a class="project-card" data-tilt href="https://github.com/dionisisdiamantis/cv-hand-gesture-volume-control" target="_blank" rel="noopener noreferrer" aria-label="Hand Gesture Volume Control on GitHub">
+          <div class="card-head"><h3>Hand Gesture Volume Control</h3><svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg></div>
           <p>A computer vision desktop app that controls Windows master volume by measuring thumb-index fingertip distance in real time via webcam input, with configurable calibration and smoothing for stable gesture response.</p>
           <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">MediaPipe</span><span class="tag">Pycaw</span></div>
         </a>
-        <a class="project-card reveal" href="https://github.com/dionisisdiamantis/LyriSearch-Lucene" target="_blank" rel="noopener noreferrer" aria-label="LyriSearch on GitHub">
-          <div class="card-top">
-            <span class="card-index">03</span>
-            <svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg>
-          </div>
-          <h3>LyriSearch</h3>
+        <a class="project-card" data-tilt href="https://github.com/dionisisdiamantis/LyriSearch-Lucene" target="_blank" rel="noopener noreferrer" aria-label="LyriSearch on GitHub">
+          <div class="card-head"><h3>LyriSearch</h3><svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg></div>
           <p>A Java-based lyrics search engine developed for the Information Retrieval course, using Lucene Core for indexing and advanced search (phrase, fuzzy, wildcard), with pagination, highlighting, and recommendations based on search history.</p>
           <div class="tags"><span class="tag">Java</span><span class="tag">Lucene Core</span><span class="tag">Maven</span></div>
         </a>
@@ -327,7 +316,6 @@
 
     <section id="skills">
       <header class="section-head reveal">
-        <p class="section-label"><span class="section-index">05</span>Skills</p>
         <h2 class="section-title">What I work with</h2>
       </header>
       <div class="skills-grid">
@@ -366,7 +354,6 @@
 
     <section id="education">
       <header class="section-head reveal">
-        <p class="section-label"><span class="section-index">06</span>Education</p>
         <h2 class="section-title">Where I studied</h2>
       </header>
       <div class="timeline timeline--plain">
@@ -413,7 +400,6 @@
     <section id="contact">
       <div class="contact-panel reveal">
         <div class="contact-glow" aria-hidden="true"></div>
-        <p class="section-label"><span class="section-index">07</span>Contact</p>
         <h2 class="section-title">Open to Opportunities</h2>
         <p class="contact-sub">Open to discussing roles, collaborations, and impactful engineering opportunities.</p>
         <a class="contact-email" href="mailto:contact@dionisisdiamantis.com">contact@dionisisdiamantis.com</a>
@@ -438,6 +424,6 @@
     </div>
   </footer>
 
-  <script src="./js/script.js?v=redesign-1"></script>
+  <script src="./js/script.js?v=redesign-2"></script>
 </body>
 </html>
