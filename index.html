@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="google-site-verification" content="ur2mMR9b_NcOJcLGrfD8p8n-YWBuxhyLKRSoC2bK8dc" />
+  <meta name="theme-color" content="#ffffff" />
   <title>Dionisis Diamantis — Computer Scientist & Engineer</title>
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96" />
@@ -13,9 +14,10 @@
   <link rel="apple-touch-icon" href="/assets/favicon-180.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/styles.css?v=gsc-verify-1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/styles.css?v=redesign-1" />
   <script>
+    document.documentElement.classList.add('js');
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     document.addEventListener('DOMContentLoaded', () => {
       if (window.location.hash) {
@@ -29,11 +31,10 @@
 
   <nav id="navbar">
     <div class="nav-inner">
-      <div class="nav-cluster nav-cluster--left">
-        <a class="nav-logo nav-logo-photo" href="#hero" aria-label="Dionisis Diamantis — home">
-          <img src="./assets/images/me.jpeg" alt="" width="156" height="156" decoding="async" />
-        </a>
-      </div>
+      <a class="nav-brand" href="#hero" aria-label="Dionisis Diamantis — home">
+        <img src="./assets/images/me.jpeg" alt="" width="36" height="36" decoding="async" />
+        <span>Dionisis Diamantis</span>
+      </a>
       <button
         type="button"
         class="nav-toggle"
@@ -41,7 +42,6 @@
         aria-controls="nav-menu"
         aria-label="Open navigation menu"
       >
-        <span class="nav-toggle-bar" aria-hidden="true"></span>
         <span class="nav-toggle-bar" aria-hidden="true"></span>
         <span class="nav-toggle-bar" aria-hidden="true"></span>
       </button>
@@ -52,418 +52,392 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#education">Education</a></li>
+        <li class="nav-cta-item"><a class="nav-cta" href="#contact">Contact</a></li>
       </ul>
     </div>
     <button type="button" class="nav-backdrop" aria-label="Close navigation menu" tabindex="-1" aria-hidden="true"></button>
   </nav>
 
-  <section id="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-accent-blob"></div>
-    <div class="hero-accent-blob2"></div>
-    <div class="hero-layout">
-      <div class="hero-main">
-        <div class="hero-tag">Open to work</div>
-        <h1 class="hero-name">Dionisis<br><em>Diamantis</em></h1>
-        <p class="hero-title">Computer Scientist & Engineer</p>
-        <p class="hero-desc">I design and build full-stack SaaS solutions, from frontend interfaces to backend services and database logic, with emphasis on performance, maintainability, and clean architecture. Based in Athens, Greece.</p>
-        <div class="hero-actions">
-          <a
-            class="btn-primary"
-            href="./assets/papers/cv%20Dionysios%20Diamantis.pdf"
-            download="Dionisis_Diamantis_CV.pdf"
-          >Download CV ↓</a>
-          <a class="btn-ghost" href="#contact">Get in touch →</a>
+  <main>
+    <section id="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-main">
+          <p class="hero-status"><span class="status-dot" aria-hidden="true"></span>Open to work</p>
+          <h1 class="hero-name">Dionisis<br>Diamantis<span class="hero-name-dot">.</span></h1>
+          <p class="hero-title">Computer Scientist & Engineer</p>
+          <p class="hero-desc">I design and build full-stack SaaS solutions, from frontend interfaces to backend services and database logic, with emphasis on performance, maintainability, and clean architecture. Based in Athens, Greece.</p>
+          <div class="hero-actions">
+            <a
+              class="btn btn-primary"
+              href="./assets/papers/cv%20Dionysios%20Diamantis.pdf"
+              download="Dionisis_Diamantis_CV.pdf"
+            >
+              Download CV
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12" /><path d="m6 11 6 6 6-6" /><path d="M5 20h14" /></svg>
+            </a>
+            <a class="btn btn-ghost" href="#contact">
+              Get in touch
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg>
+            </a>
+          </div>
+        </div>
+
+        <figure class="hero-portrait" aria-hidden="true">
+          <div class="portrait-orbit"><span class="portrait-orbit-dot"></span></div>
+          <div class="portrait-ring">
+            <img src="./assets/images/me.jpeg" alt="" width="800" height="800" decoding="async" />
+          </div>
+        </figure>
+      </div>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="meta-key">Now</span>
+          <span class="meta-value">Data &amp; AI Engineer · Cognity S.A.</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="meta-key">Based in</span>
+          <span class="meta-value">Athens, Greece</span>
+        </div>
+        <div class="hero-meta-item hero-meta-motto">
+          <span class="meta-key">Motto</span>
+          <span class="meta-value mono">&gt; Progress creates direction<span class="caret" aria-hidden="true"></span></span>
         </div>
       </div>
-      <figure class="hero-photo-wrap hero-animation" aria-label="Animated coding scene">
-        <div class="hero-orbit hero-orbit-one"></div>
-        <div class="hero-orbit hero-orbit-two"></div>
-        <div class="hero-orbit hero-orbit-three"></div>
-        <div class="hero-terminal">
-          <div class="hero-terminal-dots">
-            <span></span><span></span><span></span>
-          </div>
-          <div class="hero-terminal-lines">
-            <span class="line w-85"></span>
-            <span class="line w-65"></span>
-            <span class="line w-75"></span>
-            <span class="line w-55"></span>
-          </div>
-          <p class="hero-terminal-command">&gt; Progress creates direction...</p>
+    </section>
+
+    <section id="about">
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <header class="section-head">
+            <p class="section-label"><span class="section-index">01</span>About</p>
+            <h2 class="section-title">Building things<br>that matter</h2>
+          </header>
+          <p>I'm a <strong>Computer Scientist & Engineer</strong> with an Integrated Master's degree in Computer Science & Engineering from the University of Ioannina.</p>
+          <p>I have worked across research and product environments, from smart energy optimization projects to production SaaS platforms, contributing to frontend features, backend services, and database workflows.</p>
+          <p>I enjoy solving complex technical problems with practical solutions, and outside of work I spend my time playing guitar and watching cinema.</p>
         </div>
-      </figure>
-    </div>
-    <div class="hero-scroll"><span class="scroll-arrow">↓</span>SCROLL</div>
-  </section>
-
-  <section id="about">
-    <div class="about-grid">
-      <div class="about-copy reveal">
-        <div class="section-label">About</div>
-        <h2 class="section-title">Building things<br>that matter</h2>
-        <p>I'm a <strong>Computer Scientist & Engineer</strong> with an Integrated Master's degree in Computer Science & Engineering from the University of Ioannina.</p>
-        <p>I have worked across research and product environments, from smart energy optimization projects to production SaaS platforms, contributing to frontend features, backend services, and database workflows.</p>
-        <p>I enjoy solving complex technical problems with practical solutions, and outside of work I spend my time playing guitar and watching cinema.</p>
+        <div class="about-stats reveal">
+          <div class="stat"><div class="stat-num">2<span>+</span></div><div class="stat-label">Years of experience</div></div>
+          <div class="stat"><div class="stat-num" id="github-contributions">70<span>+</span></div><div class="stat-label">Contributions in the last year</div></div>
+          <div class="stat"><div class="stat-num" id="github-monthly-commits">10<span>+</span></div><div class="stat-label">Commits this month</div></div>
+          <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">Delivery consistency</div></div>
+        </div>
       </div>
-      <div class="about-stats reveal">
-        <div class="stat"><div class="stat-num">2<span>+</span></div><div class="stat-label">Years of experience</div></div>
-        <div class="stat"><div class="stat-num" id="github-contributions">70<span>+</span></div><div class="stat-label">Contributions in the last year</div></div>
-        <div class="stat"><div class="stat-num" id="github-monthly-commits">10<span>+</span></div><div class="stat-label">Commits this month</div></div>
-        <div class="stat"><div class="stat-num">100<span>%</span></div><div class="stat-label">Delivery consistency</div></div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-
-  <section id="experience">
-    <div class="section-label reveal">Experience</div>
-    <h2 class="section-title reveal">Where I've worked</h2>
-    <div class="exp-list">
-      <div class="exp-item reveal">
-        <div class="exp-date">May 2026 – Present</div>
-        <div class="exp-body">
-          <div class="exp-body-row">
-            <div class="exp-body-text">
-              <div class="exp-body-heading">
+    <section id="experience">
+      <header class="section-head reveal">
+        <p class="section-label"><span class="section-index">02</span>Experience</p>
+        <h2 class="section-title">Where I've worked</h2>
+      </header>
+      <div class="timeline">
+        <article class="exp-item reveal">
+          <p class="exp-date">May 2026 – Present</p>
+          <div class="exp-body">
+            <div class="exp-head">
+              <span class="exp-logo"><img src="./assets/images/cognity.png" alt="Cognity S.A. logo" width="56" height="56" decoding="async" /></span>
+              <div class="exp-head-text">
                 <h3>Data & AI Engineer</h3>
-                <div class="company">Cognity S.A.</div>
+                <p class="company">Cognity S.A.</p>
               </div>
-              <p>Data & AI engineering at <a class="project-link" href="https://www.cognity.gr" target="_blank" rel="noopener">Cognity S.A.</a>, building Hive—a scalable multi-agent platform for coordinating and deploying agentic AI systems. Designing autonomous agents that collaborate, plan, reason, and act across tools, data sources, and environments, with shared memory, messaging, task routing, and governance layers. Developing modular APIs and observability tooling so specialized agents stay aligned, enabling flexible, cloud-native solutions for enterprise automation and complex real-world problem solving.</p>
             </div>
-            <div class="exp-badge">
-              <img src="./assets/images/cognity.png" alt="Cognity S.A. logo" />
-            </div>
+            <p>Data & AI engineering at <a class="project-link" href="https://www.cognity.gr" target="_blank" rel="noopener">Cognity S.A.</a>, building Hive—a scalable multi-agent platform for coordinating and deploying agentic AI systems. Designing autonomous agents that collaborate, plan, reason, and act across tools, data sources, and environments, with shared memory, messaging, task routing, and governance layers. Developing modular APIs and observability tooling so specialized agents stay aligned, enabling flexible, cloud-native solutions for enterprise automation and complex real-world problem solving.</p>
           </div>
-        </div>
-      </div>
-      <div class="exp-item reveal">
-        <div class="exp-date">July 2025 – June 2026</div>
-        <div class="exp-body">
-          <div class="exp-body-row">
-            <div class="exp-body-text">
-              <div class="exp-body-heading">
+        </article>
+        <article class="exp-item reveal">
+          <p class="exp-date">July 2025 – June 2026</p>
+          <div class="exp-body">
+            <div class="exp-head">
+              <span class="exp-logo exp-logo--kyvera"><img src="./assets/images/kyvera.png" alt="Kyvera Solutions logo" width="56" height="56" decoding="async" /></span>
+              <div class="exp-head-text">
                 <h3>Full-stack Software Engineer</h3>
-                <div class="company">Kyvera Solutions</div>
+                <p class="company">Kyvera Solutions</p>
               </div>
-              <p>Built AI and full-stack features for <a class="project-link" href="https://kyverasolutions.com" target="_blank" rel="noopener">Kyvera</a>, a KYC/KYB compliance SaaS for corporate onboarding and secure data rooms. Developed FormFlow, a conversational agent that fills compliance forms, an AI gap analysis pipeline that reviews documents against checklists, and structure-chart analysis that generates risk-based KYC requirements, alongside Next.js and NestJS platform features.</p>
             </div>
-            <div class="exp-badge exp-badge--kyvera">
-              <img src="./assets/images/kyvera.png" alt="Kyvera Solutions logo" />
-            </div>
+            <p>Built AI and full-stack features for <a class="project-link" href="https://kyverasolutions.com" target="_blank" rel="noopener">Kyvera</a>, a KYC/KYB compliance SaaS for corporate onboarding and secure data rooms. Developed FormFlow, a conversational agent that fills compliance forms, an AI gap analysis pipeline that reviews documents against checklists, and structure-chart analysis that generates risk-based KYC requirements, alongside Next.js and NestJS platform features.</p>
           </div>
-        </div>
-      </div>
-      <div class="exp-item reveal">
-        <div class="exp-date">May 2025 – May 2026</div>
-        <div class="exp-body">
-          <div class="exp-body-row">
-            <div class="exp-body-text">
-              <div class="exp-body-heading">
+        </article>
+        <article class="exp-item reveal">
+          <p class="exp-date">May 2025 – May 2026</p>
+          <div class="exp-body">
+            <div class="exp-head">
+              <span class="exp-logo"><img src="./assets/images/athena.png" alt="Athena Research Center logo" width="56" height="56" decoding="async" /></span>
+              <div class="exp-head-text">
                 <h3>Full-stack Software Engineer</h3>
-                <div class="company">Athena Research Center</div>
+                <p class="company">Athena Research Center</p>
               </div>
-              <p>Delivered full-stack product features for <a class="project-link" href="https://bip.imsi.athenarc.gr" target="_blank" rel="noopener">BIP! Finder</a>, optimized filtering logic and database queries, and refactored legacy components for maintainability.</p>
             </div>
-            <div class="exp-badge exp-badge--athena">
-              <img src="./assets/images/athena.png" alt="Athena Research Center logo" />
-            </div>
+            <p>Delivered full-stack product features for <a class="project-link" href="https://bip.imsi.athenarc.gr" target="_blank" rel="noopener">BIP! Finder</a>, optimized filtering logic and database queries, and refactored legacy components for maintainability.</p>
           </div>
-        </div>
-      </div>
-      <div class="exp-item reveal">
-        <div class="exp-date">July 2022 – September 2022</div>
-        <div class="exp-body">
-          <div class="exp-body-row">
-            <div class="exp-body-text">
-              <div class="exp-body-heading">
+        </article>
+        <article class="exp-item reveal">
+          <p class="exp-date">July 2022 – September 2022</p>
+          <div class="exp-body">
+            <div class="exp-head">
+              <span class="exp-logo exp-logo--intralot"><img src="./assets/images/intralot.jpeg" alt="Intralot S.A. logo" width="56" height="56" decoding="async" /></span>
+              <div class="exp-head-text">
                 <h3>Software Engineer</h3>
-                <div class="company">Intralot S.A.</div>
+                <p class="company">Intralot S.A.</p>
               </div>
-              <p>Internship at <a class="project-link" href="https://www.intralot.com" target="_blank" rel="noopener">Intralot S.A.</a>, focused on managing application-database interactions including connection handling, reads, inserts, and updates. Built backend functionality with Java Spring Boot, applied pair programming techniques, debugged code to ensure reliability, and participated in daily agile scrum ceremonies while tracking work in JIRA.</p>
             </div>
-            <div class="exp-badge exp-badge--intralot">
-              <img src="./assets/images/intralot.jpeg" alt="Intralot S.A. logo" />
-            </div>
+            <p>Internship at <a class="project-link" href="https://www.intralot.com" target="_blank" rel="noopener">Intralot S.A.</a>, focused on managing application-database interactions including connection handling, reads, inserts, and updates. Built backend functionality with Java Spring Boot, applied pair programming techniques, debugged code to ensure reliability, and participated in daily agile scrum ceremonies while tracking work in JIRA.</p>
           </div>
-        </div>
-      </div>
-      <div class="exp-item reveal">
-        <div class="exp-date">2021 – 2022</div>
-        <div class="exp-body">
-          <div class="exp-body-row">
-            <div class="exp-body-text">
-              <div class="exp-body-heading">
+        </article>
+        <article class="exp-item reveal">
+          <p class="exp-date">2021 – 2022</p>
+          <div class="exp-body">
+            <div class="exp-head">
+              <span class="exp-logo exp-logo--ntua"><img src="./assets/images/ntua.webp" alt="National Technical University of Athens logo" width="56" height="56" decoding="async" /></span>
+              <div class="exp-head-text">
                 <h3>Research Member</h3>
-                <div class="company">National Technical University of Athens</div>
+                <p class="company">National Technical University of Athens</p>
               </div>
-              <p>Worked on smart-building project for energy optimization using machine learning techniques, including software for managing EV charging station data and cost optimization.</p>
             </div>
-            <div class="exp-badge exp-badge--ntua">
-              <img src="./assets/images/ntua.webp" alt="National Technical University of Athens logo" />
-            </div>
+            <p>Worked on smart-building project for energy optimization using machine learning techniques, including software for managing EV charging station data and cost optimization.</p>
           </div>
-        </div>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-
-  <section id="publications">
-    <div class="section-label reveal">Publications</div>
-    <h2 class="section-title reveal">Published work</h2>
-    <div class="projects-list">
-      <article class="pub-entry reveal">
-        <a
-          class="pub-entry-link"
-          href="https://arxiv.org/abs/2605.14722"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="View on arXiv: A Template-Driven Platform for Contextualised Researcher Profiles"
-        ></a>
-        <div class="pub-header">
-          <p class="pub-date">May 2026</p>
-          <div class="pub-main">
-            <div class="pub-title-row">
-              <h3 class="pub-title">A Template-Driven Platform for Contextualised Researcher Profiles</h3>
-              <a
-                class="pub-download"
-                href="./assets/papers/2605.14722v1.pdf"
-                download="2605.14722v1.pdf"
-                aria-label="Download paper PDF"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-              </a>
-            </div>
-            <p class="pub-authors">
-              Serafeim Chatzopoulos, Paris Koloveas, Kleanthis Vichos,
-              <strong>Dionisis Diamantis</strong>, Thanasis Vergoulis.
-            </p>
-          </div>
-        </div>
-        <div class="pub-abstract-block">
-          <div class="pub-abstract-content">
-            <hr class="pub-abstract-rule" />
-            <p class="pub-abstract-label">ABSTRACT</p>
-            <div class="pub-abstract-wrap is-collapsed">
-              <div class="pub-abstract-panel">
-              <p class="pub-abstract">Modern researchers engage in diverse activities, assume multiple contribution roles, and produce a variety of outputs beyond traditional publications. This broader view of research contributions is increasingly recognised by responsible research assessment initiatives. However, existing researcher profiling platforms remain largely focused on publications and publication-centric indicators, offering limited support for contextualised and multi-dimensional representations of research careers. This paper presents BIP! Scholar, a platform that supports flexible researcher profiling through a template-driven approach. Researchers can create profiles tailored to different presentation or assessment contexts using track-based, narrative-style, or hybrid templates which support the representation of diverse outputs, contribution roles, and broader research activities. The platform also supports research assessment experts who wish to design and evaluate experimental profile templates.</p>
+    <section id="publications">
+      <header class="section-head reveal">
+        <p class="section-label"><span class="section-index">03</span>Publications</p>
+        <h2 class="section-title">Published work</h2>
+      </header>
+      <div class="pub-list">
+        <article class="pub-entry reveal">
+          <a
+            class="pub-entry-link"
+            href="https://arxiv.org/abs/2605.14722"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View on arXiv: A Template-Driven Platform for Contextualised Researcher Profiles"
+          ></a>
+          <div class="pub-header">
+            <p class="pub-date">May 2026</p>
+            <div class="pub-main">
+              <div class="pub-title-row">
+                <h3 class="pub-title">A Template-Driven Platform for Contextualised Researcher Profiles</h3>
+                <a
+                  class="pub-download"
+                  href="./assets/papers/2605.14722v1.pdf"
+                  download="2605.14722v1.pdf"
+                  aria-label="Download paper PDF"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12" /><path d="m6 11 6 6 6-6" /><path d="M5 20h14" /></svg>
+                  <span>PDF</span>
+                </a>
               </div>
-              <button type="button" class="pub-abstract-toggle" aria-expanded="false" aria-label="Show full abstract" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="pub-entry reveal">
-        <a
-          class="pub-entry-link"
-          href="https://arxiv.org/abs/2508.03962"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="View on arXiv: Accelerating Scientific Discovery with Multi-Document Summarization of Impact-Ranked Papers"
-        ></a>
-        <div class="pub-header">
-          <p class="pub-date">Aug 2025</p>
-          <div class="pub-main">
-            <div class="pub-title-row">
-              <h3 class="pub-title">Accelerating Scientific Discovery with Multi-Document Summarization of Impact-Ranked Papers</h3>
-              <a
-                class="pub-download"
-                href="./assets/papers/2508.03962v1.pdf"
-                download="2508.03962v1.pdf"
-                aria-label="Download paper PDF"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-              </a>
-            </div>
-            <p class="pub-authors">
-              Paris Koloveas, Serafeim Chatzopoulos,
-              <strong>Dionisis Diamantis</strong>, Christos Tryfonopoulos, Thanasis Vergoulis.
-            </p>
-          </div>
-        </div>
-        <div class="pub-abstract-block">
-          <div class="pub-abstract-content">
-            <hr class="pub-abstract-rule" />
-            <p class="pub-abstract-label">ABSTRACT</p>
-            <div class="pub-abstract-wrap is-collapsed">
-              <div class="pub-abstract-panel">
-              <p class="pub-abstract">The growing volume of scientific literature makes it challenging for scientists to move from a list of papers to a synthesized understanding of a topic. Because of the constant influx of new papers on a daily basis, even if a scientist identifies a promising set of papers, they still face the tedious task of individually reading through dozens of titles and abstracts to make sense of occasionally conflicting findings. To address this critical bottleneck in the research workflow, we introduce a summarization feature to BIP! Finder, a scholarly search engine that ranks literature based on distinct impact aspects like popularity and influence. Our approach enables users to generate two types of summaries from top-ranked search results: a concise summary for an instantaneous at-a-glance comprehension and a more comprehensive literature review-style summary for greater, better-organized comprehension. This ability dynamically leverages BIP! Finder's already existing impact-based ranking and filtering features to generate context-sensitive, synthesized narratives that can significantly accelerate literature discovery and comprehension.</p>
+              <p class="pub-authors">
+                Serafeim Chatzopoulos, Paris Koloveas, Kleanthis Vichos,
+                <strong>Dionisis Diamantis</strong>, Thanasis Vergoulis.
+              </p>
+              <div class="pub-abstract-wrap is-collapsed">
+                <p class="pub-abstract-label">Abstract</p>
+                <div class="pub-abstract-panel">
+                  <p class="pub-abstract">Modern researchers engage in diverse activities, assume multiple contribution roles, and produce a variety of outputs beyond traditional publications. This broader view of research contributions is increasingly recognised by responsible research assessment initiatives. However, existing researcher profiling platforms remain largely focused on publications and publication-centric indicators, offering limited support for contextualised and multi-dimensional representations of research careers. This paper presents BIP! Scholar, a platform that supports flexible researcher profiling through a template-driven approach. Researchers can create profiles tailored to different presentation or assessment contexts using track-based, narrative-style, or hybrid templates which support the representation of diverse outputs, contribution roles, and broader research activities. The platform also supports research assessment experts who wish to design and evaluate experimental profile templates.</p>
+                </div>
+                <button type="button" class="pub-abstract-toggle" aria-expanded="false" aria-label="Show full abstract" hidden>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+                </button>
               </div>
-              <button type="button" class="pub-abstract-toggle" aria-expanded="false" aria-label="Show full abstract" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </button>
             </div>
           </div>
-        </div>
-      </article>
-    </div>
-  </section>
+        </article>
 
+        <article class="pub-entry reveal">
+          <a
+            class="pub-entry-link"
+            href="https://arxiv.org/abs/2508.03962"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View on arXiv: Accelerating Scientific Discovery with Multi-Document Summarization of Impact-Ranked Papers"
+          ></a>
+          <div class="pub-header">
+            <p class="pub-date">Aug 2025</p>
+            <div class="pub-main">
+              <div class="pub-title-row">
+                <h3 class="pub-title">Accelerating Scientific Discovery with Multi-Document Summarization of Impact-Ranked Papers</h3>
+                <a
+                  class="pub-download"
+                  href="./assets/papers/2508.03962v1.pdf"
+                  download="2508.03962v1.pdf"
+                  aria-label="Download paper PDF"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12" /><path d="m6 11 6 6 6-6" /><path d="M5 20h14" /></svg>
+                  <span>PDF</span>
+                </a>
+              </div>
+              <p class="pub-authors">
+                Paris Koloveas, Serafeim Chatzopoulos,
+                <strong>Dionisis Diamantis</strong>, Christos Tryfonopoulos, Thanasis Vergoulis.
+              </p>
+              <div class="pub-abstract-wrap is-collapsed">
+                <p class="pub-abstract-label">Abstract</p>
+                <div class="pub-abstract-panel">
+                  <p class="pub-abstract">The growing volume of scientific literature makes it challenging for scientists to move from a list of papers to a synthesized understanding of a topic. Because of the constant influx of new papers on a daily basis, even if a scientist identifies a promising set of papers, they still face the tedious task of individually reading through dozens of titles and abstracts to make sense of occasionally conflicting findings. To address this critical bottleneck in the research workflow, we introduce a summarization feature to BIP! Finder, a scholarly search engine that ranks literature based on distinct impact aspects like popularity and influence. Our approach enables users to generate two types of summaries from top-ranked search results: a concise summary for an instantaneous at-a-glance comprehension and a more comprehensive literature review-style summary for greater, better-organized comprehension. This ability dynamically leverages BIP! Finder's already existing impact-based ranking and filtering features to generate context-sensitive, synthesized narratives that can significantly accelerate literature discovery and comprehension.</p>
+                </div>
+                <button type="button" class="pub-abstract-toggle" aria-expanded="false" aria-label="Show full abstract" hidden>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-  <section id="projects">
-    <div class="section-label reveal">Projects</div>
-    <h2 class="section-title reveal">Selected work</h2>
-    <div class="projects-list">
-      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/windows-setup-main" target="_blank" rel="noopener noreferrer" aria-label="Windows Setup Automation on GitHub">
-        <div class="project-info"><h3>Windows Setup Automation</h3><p>An Ansible playbook for provisioning a complete Windows 10/11 development environment, including PowerShell profile setup, environment variables, PATH management, WinGet package installation, and optional development workspace/bootstrap tasks via tags.</p></div>
-        <div class="project-tech"><span class="project-tag">Ansible</span><span class="project-tag">PowerShell</span><span class="project-tag">WinGet</span><span class="project-tag">Lua</span><span class="project-tag">Jinja</span><span class="project-tag">Shell</span></div>
-      </a>
-      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/cv-hand-gesture-volume-control" target="_blank" rel="noopener noreferrer" aria-label="Hand Gesture Volume Control on GitHub">
-        <div class="project-info"><h3>Hand Gesture Volume Control</h3><p>A computer vision desktop app that controls Windows master volume by measuring thumb-index fingertip distance in real time via webcam input, with configurable calibration and smoothing for stable gesture response.</p></div>
-        <div class="project-tech"><span class="project-tag">Python</span><span class="project-tag">OpenCV</span><span class="project-tag">MediaPipe</span><span class="project-tag">Pycaw</span></div>
-      </a>
-      <a class="project-item reveal" href="https://github.com/dionisisdiamantis/LyriSearch-Lucene" target="_blank" rel="noopener noreferrer" aria-label="LyriSearch on GitHub">
-        <div class="project-info"><h3>LyriSearch</h3><p>A Java-based lyrics search engine developed for the Information Retrieval course, using Lucene Core for indexing and advanced search (phrase, fuzzy, wildcard), with pagination, highlighting, and recommendations based on search history.</p></div>
-        <div class="project-tech"><span class="project-tag">Java</span><span class="project-tag">Lucene Core</span><span class="project-tag">Maven</span></div>
-      </a>
-    </div>
-  </section>
+    <section id="projects">
+      <header class="section-head reveal">
+        <p class="section-label"><span class="section-index">04</span>Projects</p>
+        <h2 class="section-title">Selected work</h2>
+      </header>
+      <div class="card-grid">
+        <a class="project-card reveal" href="https://github.com/dionisisdiamantis/windows-setup-main" target="_blank" rel="noopener noreferrer" aria-label="Windows Setup Automation on GitHub">
+          <div class="card-top">
+            <span class="card-index">01</span>
+            <svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg>
+          </div>
+          <h3>Windows Setup Automation</h3>
+          <p>An Ansible playbook for provisioning a complete Windows 10/11 development environment, including PowerShell profile setup, environment variables, PATH management, WinGet package installation, and optional development workspace/bootstrap tasks via tags.</p>
+          <div class="tags"><span class="tag">Ansible</span><span class="tag">PowerShell</span><span class="tag">WinGet</span><span class="tag">Lua</span><span class="tag">Jinja</span><span class="tag">Shell</span></div>
+        </a>
+        <a class="project-card reveal" href="https://github.com/dionisisdiamantis/cv-hand-gesture-volume-control" target="_blank" rel="noopener noreferrer" aria-label="Hand Gesture Volume Control on GitHub">
+          <div class="card-top">
+            <span class="card-index">02</span>
+            <svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg>
+          </div>
+          <h3>Hand Gesture Volume Control</h3>
+          <p>A computer vision desktop app that controls Windows master volume by measuring thumb-index fingertip distance in real time via webcam input, with configurable calibration and smoothing for stable gesture response.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">MediaPipe</span><span class="tag">Pycaw</span></div>
+        </a>
+        <a class="project-card reveal" href="https://github.com/dionisisdiamantis/LyriSearch-Lucene" target="_blank" rel="noopener noreferrer" aria-label="LyriSearch on GitHub">
+          <div class="card-top">
+            <span class="card-index">03</span>
+            <svg class="card-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg>
+          </div>
+          <h3>LyriSearch</h3>
+          <p>A Java-based lyrics search engine developed for the Information Retrieval course, using Lucene Core for indexing and advanced search (phrase, fuzzy, wildcard), with pagination, highlighting, and recommendations based on search history.</p>
+          <div class="tags"><span class="tag">Java</span><span class="tag">Lucene Core</span><span class="tag">Maven</span></div>
+        </a>
+      </div>
+    </section>
 
-
-  <section id="skills">
-    <div class="section-label reveal">Skills</div>
-    <h2 class="section-title reveal">What I work with</h2>
-    <div class="projects-list">
-      <div class="project-item reveal">
-        <div class="project-info">
+    <section id="skills">
+      <header class="section-head reveal">
+        <p class="section-label"><span class="section-index">05</span>Skills</p>
+        <h2 class="section-title">What I work with</h2>
+      </header>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
           <p class="skill-label">Frontend</p>
           <h3>User Interfaces</h3>
+          <div class="tags"><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">Next.js</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
         </div>
-        <div class="project-tech"><span class="project-tag">React</span><span class="project-tag">JavaScript</span><span class="project-tag">Next.js</span><span class="project-tag">HTML</span><span class="project-tag">CSS</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-info">
+        <div class="skill-card reveal">
           <p class="skill-label">Backend</p>
           <h3>Server & APIs</h3>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">Spring Boot</span><span class="tag">REST APIs</span><span class="tag">JSON</span><span class="tag">Postman</span><span class="tag">OpenCV</span><span class="tag">MediaPipe</span><span class="tag">Pycaw</span></div>
         </div>
-        <div class="project-tech"><span class="project-tag">Node.js</span><span class="project-tag">Python</span><span class="project-tag">Spring Boot</span><span class="project-tag">REST APIs</span><span class="project-tag">JSON</span><span class="project-tag">Postman</span><span class="project-tag">OpenCV</span><span class="project-tag">MediaPipe</span><span class="project-tag">Pycaw</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-info">
+        <div class="skill-card reveal">
           <p class="skill-label">AI / LLM</p>
           <h3>Agents & Workflows</h3>
+          <div class="tags"><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Agents</span><span class="tag">Vector DBs</span></div>
         </div>
-        <div class="project-tech"><span class="project-tag">LangChain</span><span class="project-tag">LangGraph</span><span class="project-tag">LLMs</span><span class="project-tag">RAG</span><span class="project-tag">Agents</span><span class="project-tag">Vector DBs</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-info">
+        <div class="skill-card reveal">
           <p class="skill-label">Data</p>
           <h3>Databases</h3>
+          <div class="tags"><span class="tag">MySQL</span><span class="tag">MariaDB</span></div>
         </div>
-        <div class="project-tech"><span class="project-tag">MySQL</span><span class="project-tag">MariaDB</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-info">
+        <div class="skill-card reveal">
           <p class="skill-label">DevOps</p>
           <h3>Infrastructure</h3>
+          <div class="tags"><span class="tag">Docker</span><span class="tag">Linux</span><span class="tag">Nginx</span><span class="tag">YAML</span></div>
         </div>
-        <div class="project-tech"><span class="project-tag">Docker</span><span class="project-tag">Linux</span><span class="project-tag">Nginx</span><span class="project-tag">YAML</span></div>
-      </div>
-      <div class="project-item reveal">
-        <div class="project-info">
+        <div class="skill-card reveal">
           <p class="skill-label">Tools</p>
           <h3>Workflow</h3>
+          <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Figma</span></div>
         </div>
-        <div class="project-tech"><span class="project-tag">Git</span><span class="project-tag">GitHub</span><span class="project-tag">Figma</span></div>
       </div>
-    </div>
+    </section>
 
-  </section>
-
-
-  <section id="education">
-    <div class="section-label reveal">Education</div>
-    <h2 class="section-title reveal">Where I studied</h2>
-    <div class="exp-list">
-      <div class="exp-item reveal">
-        <div class="exp-body">
-          <div class="exp-body-row">
-            <div class="exp-body-text">
-              <div class="exp-body-heading">
+    <section id="education">
+      <header class="section-head reveal">
+        <p class="section-label"><span class="section-index">06</span>Education</p>
+        <h2 class="section-title">Where I studied</h2>
+      </header>
+      <div class="timeline timeline--plain">
+        <article class="exp-item reveal">
+          <div class="exp-body">
+            <div class="exp-head">
+              <span class="exp-logo"><img src="./assets/images/lse.jpg" alt="London School of Economics and Political Science logo" width="56" height="56" decoding="async" /></span>
+              <div class="exp-head-text">
                 <h3>Certificate in Machine Learning: Practical Applications</h3>
-                <div class="company">London School of Economics and Political Science (LSE)</div>
+                <p class="company">London School of Economics and Political Science (LSE)</p>
               </div>
-              <p>Machine learning methods using R.</p>
             </div>
-            <div class="exp-badge">
-              <img src="./assets/images/lse.jpg" alt="London School of Economics and Political Science logo" width="76" height="76" decoding="async" />
-            </div>
+            <p>Machine learning methods using R.</p>
           </div>
-        </div>
-      </div>
-      <div class="exp-item reveal">
-        <div class="exp-body">
-          <div class="exp-body-row">
-            <div class="exp-body-text">
-              <div class="exp-body-heading">
+        </article>
+        <article class="exp-item reveal">
+          <div class="exp-body">
+            <div class="exp-head">
+              <span class="exp-logo"><img src="./assets/images/πανεπιστημιο%20ιωαννινων.jpg" alt="University of Ioannina logo" width="56" height="56" decoding="async" /></span>
+              <div class="exp-head-text">
                 <h3>Integrated Master's &amp; Bachelor's Degree in Computer Science &amp; Engineering</h3>
-                <div class="company">University of Ioannina</div>
+                <p class="company">University of Ioannina</p>
               </div>
-              <p>Thesis: Resource Allocation Mechanisms in Distributed Edge Cloud Infrastructures</p>
             </div>
-            <div class="exp-badge">
-              <img src="./assets/images/πανεπιστημιο%20ιωαννινων.jpg" alt="University of Ioannina logo" width="76" height="76" decoding="async" />
-            </div>
+            <p>Thesis: Resource Allocation Mechanisms in Distributed Edge Cloud Infrastructures</p>
           </div>
-        </div>
-      </div>
-      <div class="exp-item reveal">
-        <div class="exp-body">
-          <div class="exp-body-row">
-            <div class="exp-body-text">
-              <div class="exp-body-heading">
+        </article>
+        <article class="exp-item reveal">
+          <div class="exp-body">
+            <div class="exp-head">
+              <span class="exp-logo"><img src="./assets/images/athens%20colege.jpg" alt="Athens College logo" width="56" height="56" decoding="async" /></span>
+              <div class="exp-head-text">
                 <h3>High School Diploma</h3>
-                <div class="company">Hellenic American Educational Foundation — Athens College</div>
+                <p class="company">Hellenic American Educational Foundation — Athens College</p>
               </div>
-              <p>Participated in Mathematics Club.</p>
-              <p>Represented Athens College at CERN.</p>
             </div>
-            <div class="exp-badge">
-              <img src="./assets/images/athens%20colege.jpg" alt="Athens College logo" width="76" height="76" decoding="async" />
-            </div>
+            <p>Participated in Mathematics Club.</p>
+            <p>Represented Athens College at CERN.</p>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-panel reveal">
+        <div class="contact-glow" aria-hidden="true"></div>
+        <p class="section-label"><span class="section-index">07</span>Contact</p>
+        <h2 class="section-title">Open to Opportunities</h2>
+        <p class="contact-sub">Open to discussing roles, collaborations, and impactful engineering opportunities.</p>
+        <a class="contact-email" href="mailto:contact@dionisisdiamantis.com">contact@dionisisdiamantis.com</a>
+        <div class="social-links">
+          <a class="social-link" href="https://github.com/dionisisdiamantis" target="_blank" rel="noopener">
+            GitHub
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/dionisis-diamantis/" target="_blank" rel="noopener">
+            LinkedIn
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg>
+          </a>
         </div>
       </div>
-    </div>
-  </section>
-
-
-  <section id="contact">
-    <div class="contact-inner">
-      <div class="section-label reveal">Contact</div>
-      <h2 class="section-title reveal">Open to Opportunities</h2>
-      <p class="contact-sub reveal">Open to discussing roles, collaborations, and impactful engineering opportunities.</p>
-      <a class="contact-email reveal" href="mailto:contact@dionisisdiamantis.com">contact@<em>dionisisdiamantis.com</em></a>
-      <div class="social-links reveal">
-        <a class="social-link" href="https://github.com/dionisisdiamantis" target="_blank" rel="noopener">GitHub</a>
-        <a class="social-link" href="https://www.linkedin.com/in/dionisis-diamantis/" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
-    <span class="footer-copy">© <span id="current-year">2026</span> Dionisis Diamantis. Powered by HTML, CSS & JavaScript.</span>
-    <div class="footer-links">
+    <div class="footer-inner">
+      <span class="footer-copy">© <span id="current-year">2026</span> Dionisis Diamantis. Powered by HTML, CSS & JavaScript.</span>
       <a class="footer-back" href="#hero">Back to top ↑</a>
     </div>
   </footer>
 
-  <script src="./js/script.js?v=gsc-verify-1"></script>
+  <script src="./js/script.js?v=redesign-1"></script>
 </body>
 </html>

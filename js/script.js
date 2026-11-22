@@ -1,8 +1,8 @@
 const navbar = document.getElementById('navbar');
 if (navbar) {
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  });
+  const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 16);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }
 
 const initNavMenu = () => {
@@ -11,10 +11,8 @@ const initNavMenu = () => {
   const backdrop = navbar?.querySelector('.nav-backdrop');
   if (!navbar || !toggle || !menu) return;
 
-  const mobileNavQuery = window.matchMedia('(max-width: 1120px)');
+  const mobileNavQuery = window.matchMedia('(max-width: 860px)');
   const root = document.documentElement;
-  let scrollLockY = 0;
-  let scrollLocked = false;
 
   const getScrollPaddingTop = () => {
     const value = parseFloat(getComputedStyle(root).scrollPaddingTop);
@@ -26,25 +24,6 @@ const initNavMenu = () => {
     window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
   };
 
-  const lockScroll = () => {
-    scrollLockY = window.scrollY;
-    scrollLocked = true;
-    root.style.setProperty('--nav-scroll-lock-top', `-${scrollLockY}px`);
-    root.classList.add('nav-menu-open');
-    root.style.setProperty('--vv-offset-top', '0px');
-  };
-
-  const unlockScroll = () => {
-    if (!scrollLocked) return;
-    scrollLocked = false;
-    root.classList.remove('nav-menu-open');
-    root.style.removeProperty('--nav-scroll-lock-top');
-    window.scrollTo(0, scrollLockY);
-    if (typeof syncMobileViewportOffset === 'function') {
-      syncMobileViewportOffset();
-    }
-  };
-
   const setOpen = (open) => {
     const isOpen = navbar.classList.contains('nav-open');
     if (open === isOpen) return;
@@ -53,12 +32,7 @@ const initNavMenu = () => {
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
     if (backdrop) backdrop.setAttribute('aria-hidden', String(!open));
-
-    if (open && mobileNavQuery.matches) {
-      lockScroll();
-    } else if (!open) {
-      unlockScroll();
-    }
+    root.classList.toggle('nav-menu-open', open && mobileNavQuery.matches);
   };
 
   const closeMenu = () => setOpen(false);
@@ -95,40 +69,35 @@ const initNavMenu = () => {
   } else if (mobileNavQuery.addListener) {
     mobileNavQuery.addListener(onViewportChange);
   }
-  window.addEventListener('resize', onViewportChange);
 };
 
 initNavMenu();
 
-const mobileViewportQuery = window.matchMedia('(max-width: 1120px)');
-const syncMobileViewportOffset = () => {
-  if (document.documentElement.classList.contains('nav-menu-open')) {
-    return;
-  }
-  if (!mobileViewportQuery.matches) {
-    document.documentElement.style.setProperty('--vv-offset-top', '0px');
-    return;
-  }
-  const vv = window.visualViewport;
-  const rawOffset = vv ? vv.offsetTop : 0;
-  const clampedOffset = Math.min(76, Math.max(0, rawOffset));
-  const currentOffset = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--vv-offset-top')) || 0;
-  if (Math.abs(clampedOffset - currentOffset) < 2) return;
-  document.documentElement.style.setProperty('--vv-offset-top', `${clampedOffset}px`);
+// Highlight the nav link of the section currently in view.
+const initActiveSection = () => {
+  const links = Array.from(document.querySelectorAll('#nav-menu a[href^="#"]:not(.nav-cta)'));
+  const sections = links
+    .map((link) => document.getElementById(link.getAttribute('href').slice(1)))
+    .filter(Boolean);
+  if (sections.length === 0 || !('IntersectionObserver' in window)) return;
+
+  const setActive = (id) => {
+    links.forEach((link) => {
+      if (link.getAttribute('href') === `#${id}`) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+
+  sections.forEach((section) => observer.observe(section));
 };
 
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', syncMobileViewportOffset);
-  window.visualViewport.addEventListener('scroll', syncMobileViewportOffset);
-}
-window.addEventListener('resize', syncMobileViewportOffset);
-window.addEventListener('orientationchange', syncMobileViewportOffset);
-if (mobileViewportQuery.addEventListener) {
-  mobileViewportQuery.addEventListener('change', syncMobileViewportOffset);
-} else if (mobileViewportQuery.addListener) {
-  mobileViewportQuery.addListener(syncMobileViewportOffset);
-}
-syncMobileViewportOffset();
+initActiveSection();
 
 const currentYearEl = document.getElementById('current-year');
 if (currentYearEl) {
