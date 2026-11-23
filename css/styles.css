@@ -24,7 +24,7 @@
 
   --max: 1120px;
   --gutter: clamp(1.25rem, 5vw, 3rem);
-  --nav-h: 68px;
+  --nav-h: 80px;
   --radius: 14px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -59,6 +59,17 @@ p { text-wrap: pretty; }
 
 .mono { font-family: var(--font-mono); }
 
+/* body copy is justified; hyphenation keeps word gaps even on narrow screens */
+.hero-desc,
+.about-copy p,
+.exp-body > p,
+.pub-abstract,
+.project-card p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
 /* ---------- NAV ---------- */
 nav {
   position: fixed;
@@ -92,22 +103,36 @@ nav.nav-open {
   gap: 0.7rem;
   text-decoration: none;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 17px;
   letter-spacing: -0.01em;
   color: var(--text);
   flex-shrink: 0;
   position: relative;
   z-index: 102;
 }
-.nav-brand img {
-  width: 36px;
-  height: 36px;
+.nav-avatar {
+  --size: 54px;
+  flex-shrink: 0;
+  width: var(--size);
+  height: var(--size);
   border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--line-strong);
-  transition: box-shadow 0.25s;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent), 0 6px 16px -6px rgba(29, 78, 216, 0.45);
+  transition: box-shadow 0.25s, transform 0.25s var(--ease);
 }
-.nav-brand:hover img { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--accent); }
+/* the source photo has white margin around the face, so zoom in on the face */
+.nav-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.4);
+  transform-origin: 50% 40%;
+}
+.nav-brand:hover .nav-avatar {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent-ink), 0 10px 20px -6px rgba(29, 78, 216, 0.55);
+}
 
 .nav-links {
   display: flex;
@@ -864,7 +889,8 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
 }
 
 @media (max-width: 860px) {
-  :root { --nav-h: 60px; }
+  :root { --nav-h: 68px; }
+  .nav-avatar { --size: 46px; }
 
   .nav-toggle { display: block; }
   .nav-links {
