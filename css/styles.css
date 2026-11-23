@@ -273,7 +273,6 @@ section > * {
   color: var(--text);
   margin-bottom: 1.25rem;
 }
-.hero-name-dot { color: var(--accent); }
 .hero-title {
   font-size: clamp(19px, 2.2vw, 24px);
   font-weight: 500;
@@ -386,7 +385,7 @@ section > * {
 
 .hero-meta {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.25fr) minmax(0, 0.85fr) minmax(0, 1.3fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1fr);
   margin-top: clamp(3rem, 7vh, 4.5rem);
   border-top: 1px solid var(--line);
 }
@@ -765,6 +764,8 @@ section > * {
 #contact { padding-bottom: clamp(4rem, 8vw, 6rem); }
 .contact-panel {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
   padding: clamp(3rem, 8vw, 5.5rem) clamp(1.5rem, 6vw, 5rem);
   border-radius: 22px;
   background: var(--navy);
@@ -772,7 +773,15 @@ section > * {
   text-align: center;
   box-shadow: 0 30px 60px -30px rgba(10, 26, 61, 0.55);
 }
-.contact-glow { display: none; }
+.contact-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(620px 320px at 50% 110%, rgba(37, 99, 235, 0.6), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: auto, 26px 26px;
+}
 .contact-panel .section-title { color: #fff; margin-bottom: 1rem; }
 .contact-sub {
   max-width: 28em;
@@ -852,8 +861,6 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
   .project-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .exp-item,
   .skill-card { grid-template-columns: 190px minmax(0, 1fr); column-gap: 1.75rem; }
-  .hero-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero-meta-item:nth-child(3) { padding-left: 0; border-left: 0; }
 }
 
 @media (max-width: 860px) {
@@ -918,8 +925,7 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
   }
 
   .hero-meta { grid-template-columns: minmax(0, 1fr); margin-top: 1.5rem; }
-  .hero-meta-item,
-  .hero-meta-item:nth-child(3) { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+  .hero-meta-item { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
   .hero-meta-item + .hero-meta-item { padding-left: 0; border-left: 0; }
   .meta-value { text-align: right; }
 
@@ -940,7 +946,6 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
   .project-card { padding: 1.5rem; }
 
   .hero-actions .btn { flex: 1 1 auto; }
-  .hero-meta-motto .meta-value { font-size: 13px; }
 
   .pub-title-row { flex-direction: column; gap: 0.75rem; }
 
@@ -957,8 +962,7 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
 @media (max-width: 380px) {
   .stat { padding: 1.15rem; }
   .stat-num { font-size: 32px; }
-  .hero-meta-item,
-  .hero-meta-item:nth-child(3) { flex-direction: column; gap: 0.2rem; }
+  .hero-meta-item { flex-direction: column; gap: 0.2rem; }
   .meta-value { text-align: left; }
 }
 
