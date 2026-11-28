@@ -154,6 +154,10 @@ p { text-wrap: pretty; }
   text-align: justify;
   hyphens: auto;
   -webkit-hyphens: auto;
+  /* plain wrapping, not `pretty` (set on every p above): on iPhones (WebKit) justified
+     lines under `pretty` were spaced out far past the right edge, leaving one word visible
+     per line and making the page ~1640px wide */
+  text-wrap: wrap;
 }
 
 /* ---------- NAV ---------- */
