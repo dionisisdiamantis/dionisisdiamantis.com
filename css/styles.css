@@ -114,6 +114,7 @@
 }
 
 html {
+  overflow-x: hidden; /* with the body rule below: the page never scrolls sideways */
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 1.5rem);
   -webkit-text-size-adjust: 100%;
@@ -156,9 +157,18 @@ p { text-wrap: pretty; }
 }
 
 /* ---------- NAV ---------- */
+/*
+  Fixed bars are sized from the screen (100vw), not from `left: 0; right: 0`.
+  Some mobile browsers widen their layout viewport when they think the page is wider than
+  the screen, and anything stretched between left and right then grows with it: the bar
+  ended up ~1640px wide on a 412px phone, with its buttons far off screen. 100vw always
+  means the real screen width, and min() keeps desktop from running under the scrollbar.
+*/
 nav {
   position: fixed;
-  inset: 0 0 auto 0;
+  top: 0;
+  left: 0;
+  width: calc(min(100%, 100vw) - 2 * var(--gutter)); /* content-box: the gutters are padding */
   z-index: 100;
   height: var(--nav-h);
   padding: 0 var(--gutter);
@@ -295,7 +305,7 @@ nav.nav-open .nav-toggle-bar:nth-child(2) { top: 21.5px; transform: rotate(-45de
   position: fixed;
   top: calc(var(--nav-h) + env(safe-area-inset-top));
   left: 0;
-  right: 0;
+  width: min(100%, 100vw);
   height: 100vh;
   z-index: 99;
   border: 0;
@@ -435,6 +445,9 @@ section > * {
 
 /* 3D layer stack: four slabs with real side faces, in an isometric view */
 .stack {
+  /* layout containment: nothing inside the stack (the floor grid, the 3D layers, the tilt)
+     can ever count towards the page's scrollable width, whatever the browser */
+  contain: layout;
   --w: clamp(150px, 19vw, 230px);
   --t: calc(var(--w) * 0.075);
   --gap: calc(var(--w) * 0.42);
@@ -1306,7 +1319,7 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
     position: fixed;
     top: calc(var(--nav-h) + env(safe-area-inset-top));
     left: 0;
-    right: 0;
+    width: min(100%, 100vw);
     z-index: 101;
     flex-direction: column;
     align-items: stretch;
