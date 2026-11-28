@@ -120,6 +120,7 @@ html {
 }
 
 body {
+  overflow-x: clip; /* nothing should ever scroll the page sideways */
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-main);
@@ -381,6 +382,9 @@ section > * {
 /* ---------- HERO ---------- */
 #hero {
   position: relative;
+  /* the stack's floor grid reaches far beyond the stack; on narrow screens it made the
+     page wider than the viewport and scrollable sideways */
+  overflow-x: clip;
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
