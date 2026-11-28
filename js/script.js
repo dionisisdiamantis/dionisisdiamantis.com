@@ -452,3 +452,55 @@ const initThemeToggle = () => {
 };
 
 initThemeToggle();
+
+// On phones and tablets the hero stack turns as the device is tilted, the way it follows
+// the pointer on desktop. The angle the device is held at counts as level, and slowly
+// re-centres if the visitor changes how they hold it. iOS asks for permission, which can
+// only be requested from a tap, so it is requested on the first touch.
+const initMotionTilt = () => {
+  const stack = document.querySelector('.stack');
+  if (!stack || !('DeviceOrientationEvent' in window)) return;
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const MAX_Z = 16; // degrees, left/right tilt → turn
+  const MAX_X = 10; // degrees, forward/back tilt → pitch
+  const clamp = (v, max) => Math.max(-max, Math.min(max, v));
+  let base = null;
+  let frame = 0;
+  let next = { x: 0, z: 0 };
+
+  const onOrientation = (event) => {
+    if (event.beta === null || event.gamma === null) return;
+    if (!base) base = { beta: event.beta, gamma: event.gamma };
+    base.beta += (event.beta - base.beta) * 0.01; // drift back to level over a few seconds
+    base.gamma += (event.gamma - base.gamma) * 0.01;
+    next = {
+      z: clamp((event.gamma - base.gamma) * 0.7, MAX_Z),
+      x: clamp((event.beta - base.beta) * -0.45, MAX_X),
+    };
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      stack.style.setProperty('--tilt-z', `${next.z.toFixed(2)}deg`);
+      stack.style.setProperty('--tilt-x', `${next.x.toFixed(2)}deg`);
+    });
+  };
+
+  const listen = () => window.addEventListener('deviceorientation', onOrientation);
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    window.addEventListener(
+      'touchend',
+      () => {
+        DeviceOrientationEvent.requestPermission()
+          .then((state) => state === 'granted' && listen())
+          .catch(() => {});
+      },
+      { once: true }
+    );
+  } else {
+    listen();
+  }
+};
+
+initMotionTilt();
