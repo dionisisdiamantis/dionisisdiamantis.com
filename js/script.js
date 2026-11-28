@@ -297,3 +297,158 @@ const initDepth = () => {
 };
 
 initDepth();
+
+// Layers of the hero stack link to their card in "What I work with".
+// With a mouse, hover reveals the tools and a click jumps to the card.
+// On touch, the first tap reveals the tools and a second tap jumps.
+const initStackLayers = () => {
+  const slabs = document.querySelectorAll('.stack .slab');
+  if (!slabs.length) return;
+  const canHover = window.matchMedia('(hover: hover)').matches;
+
+  const jumpTo = (slab) => {
+    const card = document.getElementById(slab.dataset.target);
+    if (!card) return;
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.classList.remove('is-flash');
+    void card.offsetWidth; // restart the flash if it is already running
+    card.classList.add('is-flash');
+    card.addEventListener('animationend', () => card.classList.remove('is-flash'), { once: true });
+  };
+
+  slabs.forEach((slab) => {
+    slab.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const wasActive = slab.classList.contains('is-active');
+      if (canHover || wasActive) {
+        slabs.forEach((s) => s.classList.remove('is-active'));
+        jumpTo(slab);
+        return;
+      }
+      slabs.forEach((s) => s.classList.remove('is-active'));
+      slab.classList.add('is-active');
+    });
+  });
+  document.addEventListener('click', () => slabs.forEach((s) => s.classList.remove('is-active')));
+};
+
+initStackLayers();
+
+// The hero stack's request cycle. Every cycle (one iteration of the request packet's CSS
+// animation, 10s) this picks what the request will do:
+//   - Backend: the handler calls the endpoint that belongs to the agent that was picked
+//   - AI Agents: the orchestrator picks one of 3 agents, the agent one of its 2 tools
+//   - Data: the query reads 2–4 different cells
+//   - the response rises faster or slower depending on how many cells were read
+// Timings are fractions of the cycle and match the keyframes in css/styles.css.
+const initStackCycle = () => {
+  const stack = document.querySelector('.stack');
+  const request = stack?.querySelector('.packet--req:not(.packet--ghost)');
+  if (!stack || !request) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const CYCLE = 10000;
+  const treeParts = stack.querySelectorAll('.art-tree [data-a]');
+  const endpointParts = stack.querySelectorAll('.art-backend [data-e]');
+  const cells = [...stack.querySelectorAll('.art-cell')];
+  const responses = [...stack.querySelectorAll('.packet--res')];
+
+  let lastRoute = '';
+  let timers = [];
+
+  const pickRoute = () => {
+    let a;
+    let b;
+    do {
+      a = Math.floor(Math.random() * 3);
+      b = Math.floor(Math.random() * 2);
+    } while (`${a}${b}` === lastRoute); // never the same route twice in a row
+    lastRoute = `${a}${b}`;
+    treeParts.forEach((el) => {
+      const sameAgent = Number(el.dataset.a) === a;
+      const picked = el.dataset.b === undefined ? sameAgent : sameAgent && Number(el.dataset.b) === b;
+      el.classList.toggle('is-picked', picked);
+    });
+    return a;
+  };
+
+  const pickCells = (count) => {
+    const order = cells.map((_, i) => i).sort(() => Math.random() - 0.5).slice(0, count);
+    cells.forEach((cell) => cell.classList.remove('is-hit'));
+    order.forEach((index, k) => {
+      cells[index].classList.add('is-hit');
+      cells[index].style.setProperty('--k', k);
+    });
+    return count;
+  };
+
+  const at = (fraction, fn) => timers.push(setTimeout(fn, fraction * CYCLE));
+
+  // the response rises from `fromLayer` (0 = Data, 1 = Backend) up to the Frontend
+  const riseResponse = (fromLayer, duration) => {
+    const gap = stack.querySelector('.stack-scene').offsetWidth * 0.42; // --gap
+    const from = gap * fromLayer;
+    const top = gap * 3;
+    responses.forEach((packet) => {
+      const g = Number(packet.style.getPropertyValue('--g')) || 0;
+      packet.animate(
+        [
+          { transform: `translateZ(${from}px)`, opacity: 0 },
+          { transform: `translateZ(${from}px)`, opacity: 1, offset: 0.06 },
+          { transform: `translateZ(${top}px)`, opacity: 1, offset: 0.9 },
+          { transform: `translateZ(${top}px)`, opacity: 0 },
+        ],
+        { duration, delay: g * 45, easing: 'ease-in-out' }
+      );
+    });
+  };
+
+  const runCycle = () => {
+    timers.forEach(clearTimeout);
+    timers = [];
+    const agent = pickRoute();
+    endpointParts.forEach((el) => el.classList.toggle('is-picked', Number(el.dataset.e) === agent));
+
+    const rows = 2 + Math.floor(Math.random() * 3);
+    pickCells(rows);
+    const riseMs = 900 + rows * 330; // 2 cells ≈ 1.6s … 4 cells ≈ 2.2s
+    at(0.72, () => riseResponse(0, riseMs));
+  };
+
+  request.addEventListener('animationstart', runCycle);
+  request.addEventListener('animationiteration', runCycle);
+};
+
+initStackCycle();
+
+// Light/dark theme. Follows the system until the visitor picks one, then remembers it.
+const initThemeToggle = () => {
+  const button = document.querySelector('.theme-toggle');
+  if (!button) return;
+  const root = document.documentElement;
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : systemDark.matches);
+
+  const sync = () => {
+    const dark = isDark();
+    button.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+      meta.setAttribute('content', dark ? '#0b1120' : '#ffffff');
+    });
+  };
+
+  button.addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch (e) {
+      // storage blocked: the choice still applies for this visit
+    }
+    sync();
+  });
+  systemDark.addEventListener('change', sync);
+  sync();
+};
+
+initThemeToggle();

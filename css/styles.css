@@ -13,6 +13,20 @@
   --accent-deep: #1e3a8a;
   --accent-soft: #eaf0ff;
   --navy: #0a1a3d;
+  --nav-bg: rgba(255, 255, 255, 0.94);
+  --tag-ink: var(--accent-deep);
+  --panel-edge: transparent;
+  --backdrop: rgba(10, 26, 61, 0.2);
+
+  /* hero stack: layers run dark at the foundation to light at the surface */
+  --slab-data: #2563eb;     --slab-data-a: #1d4ed8;     --slab-data-b: #1e40af;     --slab-data-ink: #fff;
+  --slab-backend: #7ea2fa;  --slab-backend-a: #5f88ee;  --slab-backend-b: #4c77e0;  --slab-backend-ink: #fff;
+  --slab-ai: #d6e2ff;       --slab-ai-a: #b3c8f8;       --slab-ai-b: #9bb5f1;       --slab-ai-ink: var(--accent-deep);
+  --slab-front: #ffffff;    --slab-front-a: #dbe3f1;    --slab-front-b: #c3d0e6;    --slab-front-ink: var(--accent-deep);
+  --slab-front-edge: #c9d5ea;
+  --stack-shadow: rgba(10, 26, 61, 0.28);
+  --pillar: rgba(37, 99, 235, 0.55);
+  --floor-line: rgba(37, 99, 235, 0.25);
 
   /* elevation, tinted toward navy so shadows match the palette */
   --shadow-1: 0 1px 2px rgba(10, 26, 61, 0.06), 0 2px 6px -2px rgba(10, 26, 61, 0.08);
@@ -24,9 +38,79 @@
 
   --max: 1120px;
   --gutter: clamp(1.25rem, 5vw, 3rem);
-  --nav-h: 80px;
+  --nav-h: 132px;
   --radius: 14px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* dark theme: follows the system unless the visitor picked one with the toggle (stored by js/script.js) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0b1120;
+    --surface: #101a2e;
+    --line: #1b2740;
+    --line-strong: #26365a;
+    --text: #e6ecf7;
+    --muted: #a3b0c7;
+    --faint: #76849f;
+    --accent: #3b82f6;
+    --accent-ink: #7ea6ff;
+    --accent-deep: #1e3a8a;
+    --accent-soft: #15213d;
+    --navy: #0f1a35;
+    --nav-bg: rgba(11, 17, 32, 0.9);
+    --tag-ink: #bcd0ff;
+    --panel-edge: #22325a;
+    --backdrop: rgba(0, 0, 0, 0.45);
+
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px -2px rgba(0, 0, 0, 0.35);
+    --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 24px -10px rgba(0, 0, 0, 0.5);
+    --shadow-3: 0 2px 4px rgba(0, 0, 0, 0.3), 0 28px 48px -20px rgba(0, 0, 0, 0.6);
+
+    /* in the dark the stack glows from its foundation up */
+    --slab-data: #2563eb;     --slab-data-a: #1d4ed8;     --slab-data-b: #1e40af;     --slab-data-ink: #fff;
+    --slab-backend: #23418a;  --slab-backend-a: #1c3672;  --slab-backend-b: #172d60;  --slab-backend-ink: #dbe6ff;
+    --slab-ai: #192c55;       --slab-ai-a: #142446;       --slab-ai-b: #101d39;       --slab-ai-ink: #b9cdff;
+    --slab-front: #132140;    --slab-front-a: #0f1a33;    --slab-front-b: #0c1529;    --slab-front-ink: #b9cdff;
+    --slab-front-edge: rgba(126, 166, 255, 0.35);
+    --stack-shadow: rgba(0, 0, 0, 0.55);
+    --pillar: rgba(126, 166, 255, 0.5);
+    --floor-line: rgba(126, 166, 255, 0.1);
+    }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b1120;
+  --surface: #101a2e;
+  --line: #1b2740;
+  --line-strong: #26365a;
+  --text: #e6ecf7;
+  --muted: #a3b0c7;
+  --faint: #76849f;
+  --accent: #3b82f6;
+  --accent-ink: #7ea6ff;
+  --accent-deep: #1e3a8a;
+  --accent-soft: #15213d;
+  --navy: #0f1a35;
+  --nav-bg: rgba(11, 17, 32, 0.9);
+  --tag-ink: #bcd0ff;
+  --panel-edge: #22325a;
+  --backdrop: rgba(0, 0, 0, 0.45);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px -2px rgba(0, 0, 0, 0.35);
+  --shadow-2: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 24px -10px rgba(0, 0, 0, 0.5);
+  --shadow-3: 0 2px 4px rgba(0, 0, 0, 0.3), 0 28px 48px -20px rgba(0, 0, 0, 0.6);
+
+  /* in the dark the stack glows from its foundation up */
+  --slab-data: #2563eb;     --slab-data-a: #1d4ed8;     --slab-data-b: #1e40af;     --slab-data-ink: #fff;
+  --slab-backend: #23418a;  --slab-backend-a: #1c3672;  --slab-backend-b: #172d60;  --slab-backend-ink: #dbe6ff;
+  --slab-ai: #192c55;       --slab-ai-a: #142446;       --slab-ai-b: #101d39;       --slab-ai-ink: #b9cdff;
+  --slab-front: #132140;    --slab-front-a: #0f1a33;    --slab-front-b: #0c1529;    --slab-front-ink: #b9cdff;
+  --slab-front-edge: rgba(126, 166, 255, 0.35);
+  --stack-shadow: rgba(0, 0, 0, 0.55);
+  --pillar: rgba(126, 166, 255, 0.5);
+  --floor-line: rgba(126, 166, 255, 0.1);
 }
 
 html {
@@ -87,7 +171,7 @@ nav {
 }
 nav.scrolled,
 nav.nav-open {
-  background: rgba(255, 255, 255, 0.94);
+  background: var(--nav-bg);
   border-color: var(--line);
 }
 .nav-inner {
@@ -100,10 +184,10 @@ nav.nav-open {
 .nav-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 1.1rem;
   text-decoration: none;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 18px;
   letter-spacing: -0.01em;
   color: var(--text);
   flex-shrink: 0;
@@ -111,7 +195,7 @@ nav.nav-open {
   z-index: 102;
 }
 .nav-avatar {
-  --size: 54px;
+  --size: 108px;
   flex-shrink: 0;
   width: var(--size);
   height: var(--size);
@@ -121,13 +205,10 @@ nav.nav-open {
   box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent), 0 6px 16px -6px rgba(29, 78, 216, 0.45);
   transition: box-shadow 0.25s, transform 0.25s var(--ease);
 }
-/* the source photo has white margin around the face, so zoom in on the face */
 .nav-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.4);
-  transform-origin: 50% 40%;
 }
 .nav-brand:hover .nav-avatar {
   transform: scale(1.05);
@@ -153,6 +234,34 @@ nav.nav-open {
 .nav-links a:hover { color: var(--text); background: var(--surface); }
 .nav-links a[aria-current="true"] { color: var(--accent-ink); }
 .nav-cta-item { margin-left: 0.5rem; }
+
+/* light/dark switch: sits at the far right on desktop, next to the menu button on mobile */
+.theme-toggle {
+  order: 3;
+  position: relative;
+  z-index: 102;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.3s var(--ease);
+}
+.theme-toggle:hover { background: var(--surface); }
+.theme-toggle:active { transform: scale(0.92); }
+.theme-icon--sun { display: none; }
+:root[data-theme="dark"] .theme-icon--sun { display: block; }
+:root[data-theme="dark"] .theme-icon--moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon--sun { display: block; }
+  :root:not([data-theme="light"]) .theme-icon--moon { display: none; }
+}
+.nav-links { order: 2; margin-left: auto; }
 
 .nav-toggle {
   display: none;
@@ -189,7 +298,7 @@ nav.nav-open .nav-toggle-bar:nth-child(2) { top: 21.5px; transform: rotate(-45de
   height: 100vh;
   z-index: 99;
   border: 0;
-  background: rgba(10, 26, 61, 0.2);
+  background: var(--backdrop);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -324,7 +433,7 @@ section > * {
 .stack {
   --w: clamp(150px, 19vw, 230px);
   --t: calc(var(--w) * 0.075);
-  --gap: calc(var(--w) * 0.24);
+  --gap: calc(var(--w) * 0.42);
   --tilt-x: 0deg;
   --tilt-z: 0deg;
   justify-self: center;
@@ -346,18 +455,35 @@ section > * {
   position: absolute;
   inset: 4%;
   border-radius: 12px;
-  background: rgba(10, 26, 61, 0.28);
+  background: var(--stack-shadow);
   filter: blur(18px);
   transform: translateZ(calc(var(--t) * -1 - 6px));
 }
+/* blueprint floor: a faint grid in the same isometric plane, fading out towards its edges */
+.stack-floor {
+  position: absolute;
+  inset: -70%;
+  pointer-events: none;
+  transform: translateZ(calc(var(--t) * -1 - 10px));
+  background-image:
+    linear-gradient(var(--floor-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--floor-line) 1px, transparent 1px);
+  background-size: calc(var(--w) / 6) calc(var(--w) / 6);
+  background-position: center;
+  -webkit-mask-image: radial-gradient(closest-side, #000 25%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 25%, transparent 100%);
+  animation: fade-in 1.2s var(--ease) 0.1s backwards;
+}
+
 .slab {
   position: absolute;
   inset: 0;
   border-radius: 3px;
   transform-style: preserve-3d;
   transform: translateZ(calc(var(--i) * var(--gap)));
-  animation: float 7s ease-in-out infinite;
-  animation-delay: calc(var(--i) * -0.6s);
+  animation:
+    build 0.9s var(--ease) calc(0.2s + var(--i) * 0.16s) backwards,
+    float 7s ease-in-out calc(var(--i) * -0.6s) infinite;
 }
 /* front-left and front-right faces, folded down from the two edges nearest the viewer */
 .slab::before,
@@ -383,25 +509,285 @@ section > * {
   transform: rotateY(90deg);
   background: var(--side-b);
 }
-.slab span {
+.slab {
+  color: var(--label, var(--accent-deep));
+  cursor: pointer;
+  translate: 0 0 0;
+  transition: translate 0.45s var(--ease);
+}
+.slab-label,
+.slab-tools {
   position: absolute;
   left: 9%;
-  bottom: 9%;
   font-family: var(--font-mono);
-  font-size: calc(var(--w) * 0.068);
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: var(--label, var(--accent-deep));
 }
+.slab-label { bottom: 9%; font-size: calc(var(--w) * 0.068); }
+/* line art drawn on each layer's top face: table, endpoints, agent graph, wireframe */
+/* sits in the front corner, the part of each layer the one above leaves visible */
+.slab-art {
+  position: absolute;
+  right: 7%;
+  bottom: 7%;
+  width: 26%;
+  height: 19%;
+  transition: opacity 0.35s var(--ease);
+}
+/* the tools behind each layer, revealed when it is hovered or tapped */
+.slab-tools {
+  left: auto;
+  right: 9%;
+  bottom: 9%;
+  text-align: right;
+  font-size: calc(var(--w) * 0.058);
+  line-height: 1.45;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+/* exploded view: the hovered layer rises a little, everything above it lifts clear */
+.slab:hover,
+.slab.is-active { translate: 0 0 calc(var(--w) * 0.04); }
+.slab:hover ~ .slab,
+.slab.is-active ~ .slab { translate: 0 0 calc(var(--w) * 0.34); }
+/* columns stretch only when there is a layer above the hovered one to lift */
+.stack-scene:has(.slab:hover ~ .slab, .slab.is-active ~ .slab) .pillar { --lift: calc(var(--w) * 0.34); }
+.stack-scene:has(.slab:hover, .slab.is-active) .packet { visibility: hidden; }
+.slab:hover .slab-art,
+.slab.is-active .slab-art { opacity: 0; }
+.slab:hover .slab-tools,
+.slab.is-active .slab-tools { opacity: 1; }
+
+/* depth runs dark at the foundation to light at the surface */
+.slab--data { background: var(--slab-data); --side-a: var(--slab-data-a); --side-b: var(--slab-data-b); --label: var(--slab-data-ink); }
+.slab--backend { background: var(--slab-backend); --side-a: var(--slab-backend-a); --side-b: var(--slab-backend-b); --label: var(--slab-backend-ink); }
+.slab--ai { background: var(--slab-ai); --side-a: var(--slab-ai-a); --side-b: var(--slab-ai-b); --label: var(--slab-ai-ink); }
 .slab--frontend {
-  background: #ffffff;
-  box-shadow: inset 0 0 0 1px #c9d5ea;
-  --side-a: #dbe3f1;
-  --side-b: #c3d0e6;
+  background: var(--slab-front);
+  box-shadow: inset 0 0 0 1px var(--slab-front-edge);
+  --side-a: var(--slab-front-a);
+  --side-b: var(--slab-front-b);
+  --label: var(--slab-front-ink);
 }
-.slab--backend { background: #d6e2ff; --side-a: #b3c8f8; --side-b: #9bb5f1; }
-.slab--data { background: #7ea2fa; --side-a: #5f88ee; --side-b: #4c77e0; --label: #fff; }
-.slab--ai { background: #2563eb; --side-a: #1d4ed8; --side-b: #1e40af; --label: #fff; }
+
+/* dashed columns standing at the corners, from the base layer up through the top one */
+.pillar,
+.packet {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  pointer-events: none;
+}
+/* --lift is typed so it can transition when the stack opens into the exploded view */
+@property --lift {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+.pillar {
+  --lift: 0px;
+  width: 1.5px;
+  height: calc(var(--gap) * 3 - 1px);
+  margin-left: -0.75px;
+  transform-origin: top;
+  transition: --lift 0.45s var(--ease);
+  transform: rotateX(90deg);
+  background: repeating-linear-gradient(to bottom, var(--pillar) 0 4px, transparent 4px 8px);
+  /* rises and falls with the top layer (same timing as its float), so it always ends just beneath it */
+  animation:
+    fade-in 0.8s var(--ease) 1s backwards,
+    pillar-float 7s ease-in-out -1.8s infinite;
+}
+@keyframes pillar-float {
+  0%, 100% { height: calc(var(--gap) * 3 + var(--lift) - 1px); }
+  50% { height: calc(var(--gap) * 3 * 1.12 + 4px + var(--lift) - 1px); }
+}
+
+/*
+  One request/response cycle, shared by every animation below so they stay in step.
+  The request walks down one layer at a time and each layer does its work before passing it on.
+  Times are percentages of --cycle:
+    click on Frontend 3% · request leaves 5%
+    AI Agents   12–34%  the LLM thinks 12–17, routes to an agent 17–21,
+                        the agent thinks 21–24.5, routes to a tool 24.5–28
+    Backend     41–55%  pipeline: auth 42.5 · validate 45 · cache 47.5 · handler 50,
+                        handler calls the endpoint 50.5–52.5
+    Data        62–72%  table is queried
+    response rises from 72%, taking 1.3–2.3s depending on how many cells were read
+             (driven from js/script.js); it is only the green packet, the layers stay still
+*/
+.stack {
+  --cycle: 10s;
+  --flow: 1.5s; /* starts once the layers have built in */
+}
+.packet {
+  --s: calc(var(--w) * 0.042);
+  --top: calc(var(--gap) * 3);
+  width: var(--s);
+  height: var(--s);
+  margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2);
+  border-radius: 50%;
+  opacity: 0;
+  background: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25), 0 0 10px 2px rgba(16, 185, 129, 0.75);
+  animation: var(--cycle) ease-in-out var(--flow) infinite;
+}
+.packet--req {
+  animation-name: request;
+  animation-delay: calc(var(--flow) + var(--g, 0) * 45ms);
+}
+/* the response is animated from js/script.js: how long it takes to rise depends on
+   how much data the query read, so its speed changes from one request to the next */
+.packet--res { animation: none; }
+/* ghosts trailing a packet: smaller and fainter the further back they are */
+.packet--ghost {
+  box-shadow: none;
+  background: rgba(16, 185, 129, calc(0.55 - var(--g) * 0.14));
+  scale: calc(1 - var(--g) * 0.18);
+}
+/* the request fades into each layer while that layer works, then carries on down */
+@keyframes request {
+  0% { transform: translateZ(var(--top)); opacity: 0; }
+  5% { transform: translateZ(var(--top)); opacity: 1; }
+  12% { transform: translateZ(calc(var(--gap) * 2)); opacity: 1; }
+  13%, 33% { transform: translateZ(calc(var(--gap) * 2)); opacity: 0; }
+  34% { transform: translateZ(calc(var(--gap) * 2)); opacity: 1; }
+  41% { transform: translateZ(var(--gap)); opacity: 1; }
+  42%, 54% { transform: translateZ(var(--gap)); opacity: 0; }
+  55% { transform: translateZ(var(--gap)); opacity: 1; }
+  62% { transform: translateZ(0); opacity: 1; }
+  63%, 100% { transform: translateZ(0); opacity: 0; }
+}
+
+/* line art does each layer's work in step with the cycle: the parts at work turn green */
+.slab-art > * { opacity: 0.55; }
+.slab-art > .art-cell,
+.slab-art > .art-card,
+.slab-art > .art-cursor { opacity: 1; stroke-opacity: 0.55; }
+
+/* Data: the query hits a few specific cells, a different few every time (picked in js/script.js) */
+.art-cell { fill: #34d399; fill-opacity: 0; animation: query var(--cycle) linear calc(var(--flow) + var(--k, 0) * 0.3s) infinite; }
+.art-cell:not(.is-hit) { fill: none; }
+@keyframes query { 0%, 62% { fill-opacity: 0; } 64.5% { fill-opacity: 0.85; } 70%, 100% { fill-opacity: 0; } }
+
+/* Backend: the request rides a transit line through the pipeline, stop by stop, then the
+   handler calls the endpoint picked for this request. */
+.slab--backend .slab-art { right: 5%; bottom: 5%; width: 38%; height: 32%; }
+.art-backend > * { opacity: 1; }
+.be-line { stroke-opacity: 0.5; }
+.be-stop,
+.be-pill { fill: var(--slab-backend); stroke-opacity: 0.75; }
+.be-pill-text { stroke-width: 1.5; stroke-opacity: 0.55; }
+.be-core { fill: currentColor; stroke: none; opacity: 0.75; }
+/* green fill laid over each stop as the request reaches it */
+.be-lit {
+  --peak: 1;
+  stroke: none;
+  fill: #34d399;
+  fill-opacity: 0;
+  animation: stop var(--cycle) linear calc(var(--flow) + var(--n) * 0.25s) infinite;
+}
+@keyframes stop { 0%, 41.5% { fill-opacity: 0; } 42.5%, 50% { fill-opacity: var(--peak); } 54%, 100% { fill-opacity: 0; } }
+/* the line fills in green between stops */
+.be-flow,
+.be-route {
+  stroke: #34d399;
+  stroke-width: 3;
+  stroke-linecap: butt;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: var(--cycle) linear var(--flow) infinite;
+}
+.be-flow--a { animation-name: flow-a; }
+.be-flow--b { animation-name: flow-b; }
+@keyframes flow-a { 0%, 42.5% { stroke-dashoffset: 1; opacity: 1; } 47.5%, 51% { stroke-dashoffset: 0; opacity: 1; } 54%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes flow-b { 0%, 47.5% { stroke-dashoffset: 1; opacity: 1; } 50%, 51% { stroke-dashoffset: 0; opacity: 1; } 54%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+/* the handler calls one endpoint: its curve draws in and its pill lights */
+.be-route { visibility: hidden; animation-name: route-be; }
+.be-route.is-picked { visibility: visible; }
+@keyframes route-be { 0%, 50.5% { stroke-dashoffset: 1; opacity: 1; } 52.5%, 54% { stroke-dashoffset: 0; opacity: 1; } 56%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+/* every pill runs the animation all the time and only the picked one is shown, so it stays in
+   step with the cycle (starting it when .is-picked is added would put it 1.5s behind) */
+.be-pill-lit { stroke: none; fill: #34d399; fill-opacity: 0; visibility: hidden; animation: pill var(--cycle) linear var(--flow) infinite; }
+.be-pill-lit.is-picked { visibility: visible; }
+@keyframes pill { 0%, 52% { fill-opacity: 0; } 53%, 54.5% { fill-opacity: 1; } 57%, 100% { fill-opacity: 0; } }
+
+/* AI Agents: a two-step decision. The LLM orchestrator at the hub thinks, picks one agent,
+   which thinks and picks one of its own tools; the route lights green and the branches not
+   taken fade.
+   js/script.js marks a new route with .is-picked at the start of every cycle. */
+.slab--ai .slab-art { right: 5%; bottom: 5%; width: 38%; height: 32%; }
+.art-tree > * { opacity: 1; }
+.tree-edge,
+.tree-node { stroke-opacity: 0.55; --dim: 0.12; }
+.tree-edge.is-picked,
+.tree-node.is-picked { --dim: 0.55; }
+/* nodes are solid in the layer's own colour so edges never show through them;
+   --on is green only on the picked route, so only those nodes light up */
+.tree-node { --off: var(--slab-ai); --on: var(--off); fill: var(--off); }
+.tree-root,
+.tree-node.is-picked { --on: #10b981; }
+.tree-edge { animation: tree-dim var(--cycle) linear var(--flow) infinite; }
+.tree-root { animation: root-think var(--cycle) linear var(--flow) infinite; }
+.tree-agent { animation: tree-dim var(--cycle) linear var(--flow) infinite, agent-pick var(--cycle) linear var(--flow) infinite; }
+.tree-tool { animation: tree-dim var(--cycle) linear var(--flow) infinite, tool-pick var(--cycle) linear var(--flow) infinite; }
+/* the chosen route draws itself in green, edge by edge */
+.tree-route {
+  stroke: #10b981;
+  stroke-width: 3.5;
+  stroke-linecap: butt;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  visibility: hidden;
+  animation: var(--cycle) linear var(--flow) infinite;
+}
+.tree-route.is-picked { visibility: visible; }
+.tree-route--1 { animation-name: route-1; }
+.tree-route--2 { animation-name: route-2; }
+@keyframes root-think {
+  0%, 12% { fill: var(--off); }
+  14% { fill: var(--on); }
+  15.5% { fill: color-mix(in srgb, var(--on) 45%, var(--off)); }
+  17% { fill: var(--on); }
+  19%, 33% { fill: color-mix(in srgb, var(--on) 60%, var(--off)); }
+  35%, 100% { fill: var(--off); }
+}
+@keyframes route-1 { 0%, 17% { stroke-dashoffset: 1; opacity: 1; } 21%, 33% { stroke-dashoffset: 0; opacity: 1; } 35%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes agent-pick {
+  0%, 20.5% { fill: var(--off); }
+  21.5% { fill: var(--on); }
+  23% { fill: color-mix(in srgb, var(--on) 50%, var(--off)); }
+  24.5% { fill: var(--on); }
+  33% { fill: color-mix(in srgb, var(--on) 60%, var(--off)); }
+  35%, 100% { fill: var(--off); }
+}
+@keyframes route-2 { 0%, 24.5% { stroke-dashoffset: 1; opacity: 1; } 28%, 33% { stroke-dashoffset: 0; opacity: 1; } 35%, 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes tool-pick {
+  0%, 27.5% { fill: var(--off); }
+  28.5%, 33% { fill: var(--on); }
+  35%, 100% { fill: var(--off); }
+}
+@keyframes tree-dim { 0%, 20% { stroke-opacity: 0.55; } 22%, 33% { stroke-opacity: var(--dim); } 36%, 100% { stroke-opacity: 0.55; } }
+
+/* Frontend: a cursor clicks a card, which turns green and sends the request */
+.art-cursor { animation: cursor var(--cycle) var(--ease) var(--flow) infinite; transform: translate(72px, 60px); }
+@keyframes cursor {
+  0% { transform: translate(29px, 39px); }
+  2% { transform: translate(29px, 39px) scale(0.8); }
+  4% { transform: translate(29px, 39px); }
+  20%, 80% { transform: translate(72px, 60px); }
+  100% { transform: translate(29px, 39px); }
+}
+.art-card { fill: #10b981; fill-opacity: 0; animation: render var(--cycle) linear var(--flow) infinite; }
+@keyframes render { 0%, 1.5% { fill-opacity: 0; } 3%, 9% { fill-opacity: 0.8; } 15%, 100% { fill-opacity: 0; } }
+
+/* entrance: layers build up from the foundation, then the columns appear */
+@keyframes build {
+  0% { visibility: hidden; translate: 0 0 calc(var(--w) * 0.6); scale: 0.92; }
+  1% { visibility: visible; }
+  100% { translate: 0 0 0; scale: 1; }
+}
+@keyframes fade-in { from { opacity: 0; } }
 
 @keyframes float {
   0%, 100% { transform: translateZ(calc(var(--i) * var(--gap))); }
@@ -531,6 +917,27 @@ section > * {
 .exp-logo--intralot { background: #e60000; }
 .exp-logo--intralot img { width: 88%; height: 88%; border-radius: 50%; }
 .exp-head-text { min-width: 0; }
+
+/* Experience: date with a larger round logo centered beneath it */
+.exp-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+.exp-aside .exp-date { padding-top: 0.2rem; }
+.exp-aside .exp-logo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+}
+.exp-aside .exp-logo img { border-radius: 50%; }
+.exp-aside .exp-logo--kyvera img { width: 90%; height: 90%; border-radius: 0; }
+.exp-aside .exp-logo--ntua img { width: 90%; height: 90%; }
+.exp-aside .exp-logo--intralot { background: #fff; }
+.exp-aside .exp-logo--intralot img { width: 86%; height: 86%; border-radius: 0; transform: translateX(5%); }
 .exp-body h3 {
   font-size: 19px;
   font-weight: 650;
@@ -551,15 +958,12 @@ section > * {
 }
 .exp-body > p + p { margin-top: 0.35rem; }
 .project-link {
-  color: var(--text);
+  color: var(--accent-ink);
   font-weight: 500;
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 3px;
+  text-decoration: none;
   transition: color 0.2s;
 }
-.project-link:hover { color: var(--accent-ink); }
+.project-link:hover { color: var(--text); }
 
 /* ---------- PUBLICATIONS ---------- */
 .pub-list { display: grid; gap: 1.25rem; }
@@ -748,7 +1152,7 @@ section > * {
   padding: 0.3rem 0.62rem;
   border-radius: 7px;
   background: var(--accent-soft);
-  color: var(--accent-deep);
+  color: var(--tag-ink);
   font-family: var(--font-mono);
   font-size: 12.5px;
   line-height: 1.4;
@@ -794,6 +1198,7 @@ section > * {
   padding: clamp(3rem, 8vw, 5.5rem) clamp(1.5rem, 6vw, 5rem);
   border-radius: 22px;
   background: var(--navy);
+  border: 1px solid var(--panel-edge);
   color: #fff;
   text-align: center;
   box-shadow: 0 30px 60px -30px rgba(10, 26, 61, 0.55);
@@ -820,14 +1225,12 @@ section > * {
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #fff;
-  text-decoration: underline;
-  text-decoration-color: rgba(147, 180, 255, 0.5);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
+  text-decoration: none;
   overflow-wrap: anywhere;
+  transition: color 0.2s;
   transition: text-decoration-color 0.2s;
 }
-.contact-email:hover { text-decoration-color: #93b4ff; }
+.contact-email:hover { color: #93b4ff; }
 .social-links {
   display: flex;
   flex-wrap: wrap;
@@ -889,10 +1292,12 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
 }
 
 @media (max-width: 860px) {
-  :root { --nav-h: 68px; }
-  .nav-avatar { --size: 46px; }
+  :root { --nav-h: 100px; }
+  .nav-avatar { --size: 80px; }
 
-  .nav-toggle { display: block; }
+  .nav-toggle { display: block; order: 4; }
+  .nav-inner { gap: 0.75rem; }
+  .theme-toggle { margin-left: auto; }
   .nav-links {
     position: fixed;
     top: calc(var(--nav-h) + env(safe-area-inset-top));
@@ -905,7 +1310,7 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
     padding: 0.5rem var(--gutter) 1.5rem;
     background: var(--bg);
     border-bottom: 1px solid var(--line);
-    box-shadow: 0 24px 40px -24px rgba(10, 26, 61, 0.25);
+    box-shadow: var(--shadow-2);
     transform: translateY(-8px);
     opacity: 0;
     visibility: hidden;
@@ -959,6 +1364,8 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
 
   .exp-item { grid-template-columns: minmax(0, 1fr); gap: 0.9rem; padding: 1.75rem 0; }
   .exp-date { padding-top: 0; }
+  .exp-aside { flex-direction: row; justify-content: flex-start; text-align: left; }
+  .exp-aside .exp-logo { order: -1; width: 72px; height: 72px; }
 
   .skill-card { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
   .skill-card .tags { grid-column: 1; grid-row: auto; margin-top: 1rem; }
@@ -992,6 +1399,13 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
   .meta-value { text-align: left; }
 }
 
+/* flashed when reached by clicking a layer of the hero stack */
+.skill-card.is-flash { animation: card-flash 1.6s var(--ease); }
+@keyframes card-flash {
+  0%, 30% { box-shadow: 0 0 0 2px var(--accent), 0 12px 30px -12px rgba(37, 99, 235, 0.45); }
+  100% { box-shadow: 0 0 0 2px transparent; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -999,4 +1413,5 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
     transition-duration: 0.01ms !important;
   }
   .js .reveal { opacity: 1; transform: none; }
+  .packet { display: none; }
 }

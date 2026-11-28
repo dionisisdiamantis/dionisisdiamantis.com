@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="google-site-verification" content="ur2mMR9b_NcOJcLGrfD8p8n-YWBuxhyLKRSoC2bK8dc" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)" />
   <title>Dionisis Diamantis — Computer Scientist & Engineer</title>
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon.png" type="image/png" sizes="96x96" />
@@ -15,9 +16,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./css/styles.css?v=redesign-4" />
+  <link rel="stylesheet" href="./css/styles.css?v=redesign-6" />
   <script>
     document.documentElement.classList.add('js');
+    // apply a theme the visitor picked earlier before the first paint, so there is no flash
+    try {
+      var savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') document.documentElement.dataset.theme = savedTheme;
+    } catch (e) {}
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     document.addEventListener('DOMContentLoaded', () => {
       if (window.location.hash) {
@@ -33,8 +39,11 @@
     <div class="nav-inner">
       <a class="nav-brand" href="#hero" aria-label="Dionisis Diamantis — home">
         <span class="nav-avatar"><img src="./assets/images/me.jpeg" alt="" width="56" height="56" decoding="async" /></span>
-        <span>Dionisis Diamantis</span>
       </a>
+      <button type="button" class="theme-toggle" aria-label="Switch to dark theme">
+        <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z" /></svg>
+        <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
+      </button>
       <button
         type="button"
         class="nav-toggle"
@@ -83,11 +92,126 @@
 
         <div class="stack" aria-hidden="true">
           <div class="stack-scene">
+            <div class="stack-floor"></div>
             <div class="stack-ground"></div>
-            <div class="slab slab--ai" style="--i: 0"><span>AI Agents</span></div>
-            <div class="slab slab--data" style="--i: 1"><span>Data</span></div>
-            <div class="slab slab--backend" style="--i: 2"><span>Backend</span></div>
-            <div class="slab slab--frontend" style="--i: 3"><span>Frontend</span></div>
+            <!-- columns that tie the layers together. One request travels down from the
+                 Frontend to the Data layer, and its response travels back up. -->
+            <i class="pillar" style="--x: 96%; --y: 4%"></i>
+            <i class="pillar" style="--x: 4%; --y: 96%"></i>
+            <!-- each packet is followed by fading ghosts that form its trail -->
+            <i class="packet packet--req" style="--x: 96%; --y: 4%"></i>
+            <i class="packet packet--req packet--ghost" style="--x: 96%; --y: 4%; --g: 1"></i>
+            <i class="packet packet--req packet--ghost" style="--x: 96%; --y: 4%; --g: 2"></i>
+            <i class="packet packet--req packet--ghost" style="--x: 96%; --y: 4%; --g: 3"></i>
+            <i class="packet packet--res" style="--x: 4%; --y: 96%"></i>
+            <i class="packet packet--res packet--ghost" style="--x: 4%; --y: 96%; --g: 1"></i>
+            <i class="packet packet--res packet--ghost" style="--x: 4%; --y: 96%; --g: 2"></i>
+            <i class="packet packet--res packet--ghost" style="--x: 4%; --y: 96%; --g: 3"></i>
+
+            <div class="slab slab--data" style="--i: 0" data-target="skill-data">
+              <svg class="slab-art" viewBox="0 0 100 80" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                <!-- table cells; js/script.js lights a different few on every query -->
+                <rect class="art-cell" x="6" y="6" width="28" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="38" y="6" width="26" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="68" y="6" width="26" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="6" y="24" width="28" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="38" y="24" width="26" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="68" y="24" width="26" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="6" y="42" width="28" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="38" y="42" width="26" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="68" y="42" width="26" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="6" y="60" width="28" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="38" y="60" width="26" height="14" rx="1.5" stroke="none" />
+                <rect class="art-cell" x="68" y="60" width="26" height="14" rx="1.5" stroke="none" />
+                <rect x="4" y="4" width="92" height="72" rx="5" />
+                <path d="M4 22h92M4 40h92M4 58h92M36 4v72M66 4v72" />
+              </svg>
+              <span class="slab-label">Data</span>
+              <span class="slab-tools">PostgreSQL<br />MongoDB<br />MySQL<br />Vector DBs</span>
+            </div>
+            <div class="slab slab--backend" style="--i: 1" data-target="skill-backend">
+              <!-- request pipeline drawn as a transit line: auth → validate → cache (diamond) → handler.
+                   The handler calls the endpoint that belongs to the agent the LLM picked
+                   (js/script.js marks it with .is-picked). -->
+              <svg class="slab-art art-backend" viewBox="0 0 100 80" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path class="be-line" d="M12 16H80" />
+                <path class="be-line" d="M80 22.5C80 40 62 40 30 40" />
+                <path class="be-line" d="M80 22.5C80 55 62 55 30 55" />
+                <path class="be-line" d="M80 22.5C80 70 62 70 30 70" />
+                <path class="be-flow be-flow--a" pathLength="1" d="M12 16H56" />
+                <path class="be-flow be-flow--b" pathLength="1" d="M56 16H80" />
+                <path class="be-route" data-e="0" pathLength="1" d="M80 22.5C80 40 62 40 30 40" />
+                <path class="be-route" data-e="1" pathLength="1" d="M80 22.5C80 55 62 55 30 55" />
+                <path class="be-route" data-e="2" pathLength="1" d="M80 22.5C80 70 62 70 30 70" />
+                <rect class="be-pill" x="6" y="35.5" width="24" height="9" rx="4.5" />
+                <rect class="be-pill-lit" data-e="0" x="6" y="35.5" width="24" height="9" rx="4.5" />
+                <path class="be-pill-text" d="M11.5 40H22" />
+                <rect class="be-pill" x="6" y="50.5" width="24" height="9" rx="4.5" />
+                <rect class="be-pill-lit" data-e="1" x="6" y="50.5" width="24" height="9" rx="4.5" />
+                <path class="be-pill-text" d="M11.5 55H22" />
+                <rect class="be-pill" x="6" y="65.5" width="24" height="9" rx="4.5" />
+                <rect class="be-pill-lit" data-e="2" x="6" y="65.5" width="24" height="9" rx="4.5" />
+                <path class="be-pill-text" d="M11.5 70H22" />
+                <circle class="be-stop" cx="12" cy="16" r="5" />
+                <circle class="be-lit" cx="12" cy="16" r="5" style="--n: 0" />
+                <circle class="be-stop" cx="34" cy="16" r="5" />
+                <circle class="be-lit" cx="34" cy="16" r="5" style="--n: 1" />
+                <path class="be-stop" d="M56 9.5L62.5 16L56 22.5L49.5 16Z" />
+                <path class="be-lit be-lit--cache" d="M56 9.5L62.5 16L56 22.5L49.5 16Z" style="--n: 2" />
+                <circle class="be-stop" cx="80" cy="16" r="6.5" />
+                <circle class="be-lit be-lit--handler" cx="80" cy="16" r="6.5" style="--n: 3" />
+                <circle class="be-core" cx="80" cy="16" r="2" />
+              </svg>
+              <span class="slab-label">Backend</span>
+              <span class="slab-tools">Node.js<br />NestJS<br />Spring Boot</span>
+            </div>
+            <div class="slab slab--ai" style="--i: 2" data-target="skill-ai">
+              <!-- decision graph: the LLM orchestrator at the hub picks an agent, the agent picks one of its own tools.
+                   Tools only connect to their agent, agents only to the orchestrator. js/script.js picks a new route every cycle -->
+              <svg class="slab-art art-tree" viewBox="0 0 100 80" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                <path class="tree-edge" data-a="0" d="M40 42L14 22" />
+                <path class="tree-edge" data-a="1" d="M40 42L70 15" />
+                <path class="tree-edge" data-a="2" d="M40 42L63 64" />
+                <path class="tree-edge" data-a="0" data-b="0" d="M14 22L7 52" />
+                <path class="tree-edge" data-a="0" data-b="1" d="M14 22L31 5" />
+                <path class="tree-edge" data-a="1" data-b="0" d="M70 15L93 33" />
+                <path class="tree-edge" data-a="1" data-b="1" d="M70 15L90 5" />
+                <path class="tree-edge" data-a="2" data-b="0" d="M63 64L89 73" />
+                <path class="tree-edge" data-a="2" data-b="1" d="M63 64L30 75" />
+                <path class="tree-route tree-route--1" data-a="0" pathLength="1" d="M40 42L14 22" />
+                <path class="tree-route tree-route--1" data-a="1" pathLength="1" d="M40 42L70 15" />
+                <path class="tree-route tree-route--1" data-a="2" pathLength="1" d="M40 42L63 64" />
+                <path class="tree-route tree-route--2" data-a="0" data-b="0" pathLength="1" d="M14 22L7 52" />
+                <path class="tree-route tree-route--2" data-a="0" data-b="1" pathLength="1" d="M14 22L31 5" />
+                <path class="tree-route tree-route--2" data-a="1" data-b="0" pathLength="1" d="M70 15L93 33" />
+                <path class="tree-route tree-route--2" data-a="1" data-b="1" pathLength="1" d="M70 15L90 5" />
+                <path class="tree-route tree-route--2" data-a="2" data-b="0" pathLength="1" d="M63 64L89 73" />
+                <path class="tree-route tree-route--2" data-a="2" data-b="1" pathLength="1" d="M63 64L30 75" />
+                <circle class="tree-node tree-root" cx="40" cy="42" r="7" />
+                <circle class="tree-node tree-agent" data-a="0" cx="14" cy="22" r="5" />
+                <circle class="tree-node tree-agent" data-a="1" cx="70" cy="15" r="5" />
+                <circle class="tree-node tree-agent" data-a="2" cx="63" cy="64" r="5" />
+                <circle class="tree-node tree-tool" data-a="0" data-b="0" cx="7" cy="52" r="4" />
+                <circle class="tree-node tree-tool" data-a="0" data-b="1" cx="31" cy="5" r="4" />
+                <circle class="tree-node tree-tool" data-a="1" data-b="0" cx="93" cy="33" r="4" />
+                <circle class="tree-node tree-tool" data-a="1" data-b="1" cx="90" cy="5" r="4" />
+                <circle class="tree-node tree-tool" data-a="2" data-b="0" cx="89" cy="73" r="4" />
+                <circle class="tree-node tree-tool" data-a="2" data-b="1" cx="30" cy="75" r="4" />
+              </svg>
+              <span class="slab-label">AI Agents</span>
+              <span class="slab-tools">LangGraph<br />RAG<br />LLMs</span>
+            </div>
+            <div class="slab slab--frontend" style="--i: 3" data-target="skill-frontend">
+              <svg class="slab-art" viewBox="0 0 100 80" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                <rect x="4" y="4" width="92" height="72" rx="5" />
+                <path d="M4 18h92" />
+                <rect class="art-card" x="12" y="28" width="34" height="22" rx="3" /><rect x="54" y="28" width="34" height="22" rx="3" />
+                <path d="M12 62h50M12 69h30" />
+                <path class="art-cursor" d="M0 0v13l3.5-3.5 2.5 6 2.5-1-2.5-6h5z" fill="currentColor" stroke="none" />
+              </svg>
+              <span class="slab-label">Frontend</span>
+              <span class="slab-tools">React<br />Next.js</span>
+            </div>
           </div>
         </div>
       </div>
@@ -133,10 +257,12 @@
       </header>
       <div class="timeline">
         <article class="exp-item reveal">
-          <p class="exp-date">May 2026 – Present</p>
+          <div class="exp-aside">
+            <p class="exp-date">May 2026 – Present</p>
+            <span class="exp-logo"><img src="./assets/images/cognity.png" alt="Cognity S.A. logo" width="96" height="96" decoding="async" /></span>
+          </div>
           <div class="exp-body">
             <div class="exp-head">
-              <span class="exp-logo"><img src="./assets/images/cognity.png" alt="Cognity S.A. logo" width="56" height="56" decoding="async" /></span>
               <div class="exp-head-text">
                 <h3>Data & AI Engineer</h3>
                 <p class="company">Cognity S.A.</p>
@@ -146,10 +272,12 @@
           </div>
         </article>
         <article class="exp-item reveal">
-          <p class="exp-date">July 2025 – June 2026</p>
+          <div class="exp-aside">
+            <p class="exp-date">July 2025 – June 2026</p>
+            <span class="exp-logo exp-logo--kyvera"><img src="./assets/images/kyvera.png" alt="Kyvera Solutions logo" width="96" height="96" decoding="async" /></span>
+          </div>
           <div class="exp-body">
             <div class="exp-head">
-              <span class="exp-logo exp-logo--kyvera"><img src="./assets/images/kyvera.png" alt="Kyvera Solutions logo" width="56" height="56" decoding="async" /></span>
               <div class="exp-head-text">
                 <h3>Full-stack Software Engineer</h3>
                 <p class="company">Kyvera Solutions</p>
@@ -159,10 +287,12 @@
           </div>
         </article>
         <article class="exp-item reveal">
-          <p class="exp-date">May 2025 – May 2026</p>
+          <div class="exp-aside">
+            <p class="exp-date">May 2025 – May 2026</p>
+            <span class="exp-logo"><img src="./assets/images/athena.png" alt="Athena Research Center logo" width="96" height="96" decoding="async" /></span>
+          </div>
           <div class="exp-body">
             <div class="exp-head">
-              <span class="exp-logo"><img src="./assets/images/athena.png" alt="Athena Research Center logo" width="56" height="56" decoding="async" /></span>
               <div class="exp-head-text">
                 <h3>Full-stack Software Engineer</h3>
                 <p class="company">Athena Research Center</p>
@@ -172,10 +302,12 @@
           </div>
         </article>
         <article class="exp-item reveal">
-          <p class="exp-date">July 2022 – September 2022</p>
+          <div class="exp-aside">
+            <p class="exp-date">July 2022 – September 2022</p>
+            <span class="exp-logo exp-logo--intralot"><img src="./assets/images/intralot.png" alt="Intralot S.A. logo" width="96" height="96" decoding="async" /></span>
+          </div>
           <div class="exp-body">
             <div class="exp-head">
-              <span class="exp-logo exp-logo--intralot"><img src="./assets/images/intralot.jpeg" alt="Intralot S.A. logo" width="56" height="56" decoding="async" /></span>
               <div class="exp-head-text">
                 <h3>Software Engineer</h3>
                 <p class="company">Intralot S.A.</p>
@@ -185,10 +317,12 @@
           </div>
         </article>
         <article class="exp-item reveal">
-          <p class="exp-date">2021 – 2022</p>
+          <div class="exp-aside">
+            <p class="exp-date">2021 – 2022</p>
+            <span class="exp-logo exp-logo--ntua"><img src="./assets/images/ntua.webp" alt="National Technical University of Athens logo" width="96" height="96" decoding="async" /></span>
+          </div>
           <div class="exp-body">
             <div class="exp-head">
-              <span class="exp-logo exp-logo--ntua"><img src="./assets/images/ntua.webp" alt="National Technical University of Athens logo" width="56" height="56" decoding="async" /></span>
               <div class="exp-head-text">
                 <h3>Research Member</h3>
                 <p class="company">National Technical University of Athens</p>
@@ -315,25 +449,25 @@
         <h2 class="section-title">What I work with</h2>
       </header>
       <div class="skills-grid">
-        <div class="skill-card reveal">
+        <div class="skill-card reveal" id="skill-frontend">
           <p class="skill-label">Frontend</p>
           <h3>User Interfaces</h3>
           <div class="tags"><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">Next.js</span><span class="tag">HTML</span><span class="tag">CSS</span></div>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card reveal" id="skill-backend">
           <p class="skill-label">Backend</p>
           <h3>Server & APIs</h3>
           <div class="tags"><span class="tag">Node.js</span><span class="tag">Python</span><span class="tag">Spring Boot</span><span class="tag">REST APIs</span><span class="tag">JSON</span><span class="tag">Postman</span><span class="tag">OpenCV</span><span class="tag">MediaPipe</span><span class="tag">Pycaw</span></div>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card reveal" id="skill-ai">
           <p class="skill-label">AI / LLM</p>
           <h3>Agents & Workflows</h3>
           <div class="tags"><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Agents</span><span class="tag">Vector DBs</span></div>
         </div>
-        <div class="skill-card reveal">
+        <div class="skill-card reveal" id="skill-data">
           <p class="skill-label">Data</p>
           <h3>Databases</h3>
-          <div class="tags"><span class="tag">MySQL</span><span class="tag">MariaDB</span></div>
+          <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">MariaDB</span></div>
         </div>
         <div class="skill-card reveal">
           <p class="skill-label">DevOps</p>
@@ -415,11 +549,11 @@
 
   <footer>
     <div class="footer-inner">
-      <span class="footer-copy">© <span id="current-year">2026</span> Dionisis Diamantis. Powered by HTML, CSS & JavaScript.</span>
+      <span class="footer-copy">© <span id="current-year">2026</span> Dionisis Diamantis</span>
       <a class="footer-back" href="#hero">Back to top ↑</a>
     </div>
   </footer>
 
-  <script src="./js/script.js?v=redesign-4"></script>
+  <script src="./js/script.js?v=redesign-5"></script>
 </body>
 </html>
