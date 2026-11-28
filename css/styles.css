@@ -1358,6 +1358,9 @@ footer { padding: 0 var(--gutter) calc(2rem + env(safe-area-inset-bottom)); }
     aspect-ratio: auto;
     padding: calc(var(--gap) * 3 + 2rem) 0 1.5rem;
   }
+  /* keep the floor grid inside the screen: Chrome on Android widens the page to fit anything
+     that pokes out, even when it is clipped, and the fixed top bar then stretches with it */
+  .stack-floor { inset: -30%; }
 
   .hero-meta { grid-template-columns: minmax(0, 1fr); margin-top: 1.5rem; }
   .hero-meta-item { flex-direction: row; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
